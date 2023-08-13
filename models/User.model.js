@@ -6,13 +6,13 @@ const userSchema = new Schema(
     username: {
       type: String,
       trim: true,
-      required: true,
+      required: [true, 'Please fill the username field'],
       unique: true
     },
 
     email: {
       type: String,
-      required: true,
+      required: [true, 'Please fill the e-mail field'],
       unique: true,
       lowercase: true,
       trim: true
@@ -20,7 +20,7 @@ const userSchema = new Schema(
 
     password: {
       type: String,
-      required: true
+      required: [true, 'Please fill the password field'],
     },
 
     description: {
@@ -29,6 +29,7 @@ const userSchema = new Schema(
 
     profilePicture: {
       type: String,
+      // default: 
     },
 
     myFriends: [{
@@ -40,9 +41,15 @@ const userSchema = new Schema(
 
     myGames: [{
       type: Object,
-    }]
+    }],
 
     // [TO BE CONFIRMED]
+
+    role: {
+      type: String,
+      enum: ['ADMIN', 'USER'],
+      default: 'USER'
+    }
 
   },
 

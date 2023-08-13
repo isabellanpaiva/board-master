@@ -8,4 +8,10 @@ a {
 
 h1 {
   color: 15px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+#form-text {
+  font-size: 10px;
 }

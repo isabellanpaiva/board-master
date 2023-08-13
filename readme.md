@@ -5,6 +5,7 @@
 | HTTP Method |             URL Path            |           Description           | JSON |
 |:-----------:|:-------------------------------:|:-------------------------------:|:----:|
 |     GET     |                /                |            Home page            |      |
+|     GET     |           /games/categorie      |           Games categorie       |      |
 |     GET     |           /games/list           |           Games list            |      |
 |     GET     |      /games/details/{{id}}      |          Game details           |      |
 |     POST    |      /games/add-game/{{id}}     |   Add a game from your profile  |      |

@@ -4,9 +4,34 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/User.model')
+const uploaderMiddleware = require('../middlewares/uploader.midleware')
 const { isLoggedOut } = require('../middlewares/route-guard')
 
 const saltRounds = 10
+
+
+
+//signup screen (render)
+
+router.get('/signup', isLoggedOut, (req, res) => {
+    res.render('auth/signup')
+})
+
+//signup screen (handler)
+
+router.post('/signup', isLoggedOut, uploaderMiddleware.single('profilePicture'), (req, res, next) => {
+
+    const { username, email, password, description } = req.body
+    const { path: profilePicture } = req.file
+
+
+    bcrypt
+        .genSalt(saltRounds)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({ username, email, description, password: hash, profilePicture }))
+        .then(() => res.redirect('/login'))
+        .catch(err => next(err))
+})
 
 // login form (render)
 
@@ -45,24 +70,8 @@ router.post('/login', isLoggedOut, (req, res, next) => {
         .catch(err => next(err))
 })
 
-//signup screen (render)
-
-router.get('/signup', isLoggedOut, (req, res) => {
-    res.render('auth/signup')
-})
-
-//signup screen (handler)
-
-router.post('/signup', isLoggedOut, (req, res, next) => {
-
-    const { username, email, plainPassword, description, profilePicture } = req.body
-
-    bcrypt
-        .genSalt(saltRounds)
-        .then(salt => bcrypt.hash(plainPassword, salt))
-        .then(hash => User.create({ username, email, password: hash, description, profilePicture }))
-        .then(() => res.redirect('/login'))
-        .catch(err => next(err))
+router.get('/logout', (req, res) => {
+    req.session.destroy(() => res.redirect('/'))
 })
 
 //export setup

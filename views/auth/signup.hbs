@@ -1,35 +1,39 @@
 <h1>Sign Up</h1>
 
-<div class="row justify-content-center mt-5 ">
+<div class="row justify-content-center mt-5">
 
-    <div class="col-4 border border-2 border-dark rounded">
+    <div class="col-4">
+
+        {{!-- border border-2 border-dark rounded --}}
+        {{!-- took the border out until we know how to add margin on it --}}
+
 
         <form action="/signup" method="POST" enctype="multipart/form-data">
 
-            <div class="mb-3">
+            <div class="mb-3 mb-4">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">Be creative! </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mb-4">
                 <label for="description" class="form-label">Description</label>
                 <input type="text" class="form-control" id="description" name="description">
                 <div id="emailHelp" class="form-text">How would you describe your gamer persona?</div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mb-4">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">Example: yourname@domain.com</div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mb-4">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mb-4">
                 <label for="profilePicture" class="form-label">Profile picture</label>
                 <input type="file" class="form-control" id="profilePicture" name="profilePicture">
             </div>

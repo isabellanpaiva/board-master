@@ -47,4 +47,34 @@
 
 <h1> My friends </h1>
 
-<h1> Events I'm attending </h1>
+<div class="row row-cols-4 row-cols-md-4 g-4 mt-3 ms-4 me-4">
+
+    {{#each friendDetails}}
+
+    <div class="col">
+
+        <div class="card h-100 w-100 ms-3">
+
+            <img src="{{this.profilePicture}}" style="max-width: 300px; max-height: 300px;">
+
+            <div class="card-body">
+
+                {{this.username}}
+
+                <br>
+
+                <br>
+
+                <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+
+                <a class="btn btn-dark" href="/community/remove-friend/{{id}}" role=" button">Remove friend</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>

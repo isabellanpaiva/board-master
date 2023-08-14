@@ -14,11 +14,11 @@ class gamesAPIHandler {
     }
 
     getAllGames(category_id) {
-        return this.axiosApp.get(`/search?categories=${category_id}&limit=100&pretty=true&client_id=JLBr5npPhV`)
+        return this.axiosApp.get(`/search?categories=${category_id}&limit=100&fields=image_url,name,id&pretty=true&client_id=JLBr5npPhV`)
     }
 
-    getGameDetails(game_name) {
-        return this.axiosApp.get(`/search?name=${game_name}&client_id=oRHFQODxrP`)
+    getGameDetails(game_id) {
+        return this.axiosApp.get(`/search?ids=${game_id}&client_id=oRHFQODxrP`)
     }
 }
 

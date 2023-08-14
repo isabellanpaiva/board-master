@@ -39,8 +39,8 @@ const userSchema = new Schema(
 
     // [TO BE CONFIRMED]
 
-    myGames: [{
-      type: Object,
+    favorites: [{
+      type: String,
     }],
 
     // [TO BE CONFIRMED]

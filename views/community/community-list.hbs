@@ -4,8 +4,6 @@
 
     {{#each users}}
 
-    {{#unless isOwner}}
-
     <div class="col">
 
         <div class="card h-75 ms-3">
@@ -26,15 +24,17 @@
 
                 <br>
 
+                {{!-- {{#unless isFriend}} --}}
+
                 <a class="btn btn-dark" href="/community/add-friend/{{id}}" role=" button">Add as friend</a>
+
+                {{!-- {{/unless}} --}}
 
             </div>
 
         </div>
 
     </div>
-
-    {{/unless}}
 
     {{/each}}
 

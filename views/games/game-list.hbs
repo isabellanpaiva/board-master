@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>{{category_name}}</h2>
+    <hr>
+    <div class="row">
+        {{#each games}}
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{image_url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <a href="/games/details/{{name}}" class="btn btn-dark">Details</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

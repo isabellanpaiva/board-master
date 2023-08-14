@@ -18,6 +18,7 @@ router.get("/list/:category_id/:category_name", (req, res, next) => {
     const { category_id, category_name } = req.params
 
 
+
     gamesAPI
         .getAllGames(category_id)
         .then(response => res.render('games/game-list', { isLogged: req.session.currentUser, category_name, category_id, games: response.data.games }))
@@ -45,6 +46,21 @@ router.get("/add-game/:game_id/:category_id/:category_name", (req, res, next) =>
         .updateOne({ _id: user_id }, { $push: { favorites: game_id } })
         .then(() => res.redirect(`/games/list/${category_id}/${category_name}`))
         .catch(err => next(err))
+
+})
+
+router.get("/delete-game/:game_id/:category_id/:category_name", (req, res, next) => {
+
+    const { game_id, category_id, category_name } = req.params
+    const user_id = req.session.currentUser._id
+
+    User
+        .findByIdAndUpdate({ _id: user_id }, { $pull: { favorites: game_id } })
+        .then(() => res.redirect(`/games/list/${category_id}/${category_name}`))
+        .catch(err => next(err))
+
+
+
 
 })
 

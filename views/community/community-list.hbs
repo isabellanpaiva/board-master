@@ -1,1 +1,39 @@
-<h1>Community list</h1>
+<h1>Check our global masters network</h1>
+
+<div class="row row-cols-4 row-cols-md-4 g-4 mt-3 ms-4 me-4">
+
+    {{#each users}}
+
+    <div class="col">
+
+        <div class="card h-75 ms-3">
+
+            <img src="{{profilePicture}}" class="card-img-top" alt="profilePicture">
+
+            <div class="card-body">
+
+                <p class="card-text"> {{username}}</p>
+
+                <p class="card-text"> {{description}}</p>
+
+                <br>
+
+                <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">Check user profile</a>
+
+                <br>
+
+                <br>
+
+                <form action="/community/add-friend/{{id}}" method="POST">
+                    <a class="btn btn-dark" href="/community/add-friend/{{id}}" role=" button">Add as a friend</a>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>

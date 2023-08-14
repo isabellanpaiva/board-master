@@ -29,5 +29,5 @@
 |     GET     |    /community/details/{{id}}    |         Friends details         |      |
 |     POST    |   /community/add-friend/{{id}}  |         Add a new friend        |      |
 |     POST    | /community/delete-friend/{{id}} |         Remove a friend         |      |
-|     GET     |            /api/games           |           Games list            |   ✅  |
-|     GET     |    /api/games/details/{{id}}    |          Game details           |   ✅  |
+|     GET     |            /api/events           |           Events list          |   ✅  |
+|     GET     |    /api/events/details/{{id}}    |          Events details        |   ✅  |

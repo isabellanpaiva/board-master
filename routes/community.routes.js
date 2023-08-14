@@ -6,27 +6,40 @@ const uploaderMiddleware = require('../middlewares/uploader.midleware')
 
 //comunity list 
 
-router.get("/", (req, res, next) => {
+router.get("/", isLoggedIn, (req, res, next) => {
 
-    // // const ownerRole = {
-    // //     isOwner: req.session.currentUser._id === id
-    // // }
+    const currentUser = req.session.currentUser._id;
 
     User
-        .find()
+        .find({ _id: { $ne: currentUser } })
         .then(users => res.render("community/community-list", { users, isLogged: req.session.currentUser }))
-        .catch(err => next(err))
+        .catch(err => next(err));
 })
 
+
 //comunity profiles
+
+router.get("/details/:friend_id", isLoggedIn, async (req, res, next) => {
+
+    try {
+        const { friend_id } = req.params
+
+        const currentUser = req.session.currentUser
+
+        const user = await User.findById(friend_id);
+
+        const isFriend = currentUser.friends.includes(friend_id)
+
+        res.render("community/users-profile", { user, isLogged: currentUser, isFriend })
+    } catch (err) {
+        next(err);
+    }
+});
+
 
 router.get("/details/:friend_id", isLoggedIn, (req, res, next) => {
 
     const { friend_id } = req.params
-
-    const ownerRole = {
-        isOwner: req.session.currentUser._id === id
-    }
 
     User
 

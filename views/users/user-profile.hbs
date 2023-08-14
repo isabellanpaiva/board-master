@@ -1,1 +1,44 @@
-<h1>User profile</h1>
+<h1>Welcome, {{user.username}}!</h1>
+
+<div class="card mt-5 ms-5" style="max-width: 2000px;">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <img src="{{user.profilePicture}}" class="img-fluid rounded-start" alt="profilePicture">
+        </div>
+
+        <div class="col-md-8 mt-3">
+
+            <div class="card-body">
+
+                <p class="card-text">Username: {{user.username}}</p>
+
+                <br>
+
+                <p class="card-text">E-mail: {{user.email}}</p>
+
+                <br>
+
+                <p class="card-text"> Description: {{user.description}}</p>
+
+                <br>
+
+
+                <form action="/users/edit/{{user.id}}" method="POST">
+                    <a class="btn btn-dark" href="/users/edit/{{user.id}}" role="button">Edit profile</a>
+                </form>
+
+                <br>
+
+                <form action="/users/delete/{{user.id}}" method="POST">
+                    <input class="btn btn-dark mt-3" type="submit" role="button" value="Delete profile">
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

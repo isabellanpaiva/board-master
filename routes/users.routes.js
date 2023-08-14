@@ -13,9 +13,33 @@ router.get("/profile/:user_id", isLoggedIn, (req, res, next) => {
     User
 
         .findById(user_id)
-        .then((user) => {
-            res.render("users/user-profile", { isLogged: req.session.currentUser, user })
+
+        .then(async (user) => {
+
+            //show friends
+
+            const newFriend = user.friends.map(async (friendId) => {
+
+                const friend = await User.findById(friendId).catch(err => {
+
+                    console.error("Error fetching friend:", err)
+
+                    return null
+                })
+                return friend
+
+            })
+
+            const friendDetails = await Promise.all(newFriend)
+
+            //show favorited games
+
+            //render the view 
+
+            res.render("users/user-profile", { isLogged: req.session.currentUser, user, friendDetails })
+
         })
+
         .catch(err => next(err))
 
 })

@@ -4,17 +4,18 @@
     <div class="row me-2 mt-5">
 
         <div class="col-5">
-            <img src="{{game.image_url}}" alt="">
+            <img src="{{game.image_url}}" alt="{{game.name}}">
         </div>
 
         <div class="col-6 mt-5">
             <h2>{{game.name}}</h2>
             <hr>
             <p>Published in {{game.year_published}}</p>
-
-            <p>{{game.description_preview}}</p>
             <p>Players: {{game.players}}</p>
             <p>Min age: {{game.min_age}}</p>
+            <p>Play time: {{game.playtime}} mins</p>
+            <p>{{game.description_preview}}</p>
+
         </div>
     </div>
 </div>

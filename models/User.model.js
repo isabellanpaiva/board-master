@@ -35,7 +35,7 @@ const userSchema = new Schema(
     friends: [{
       type: String,
     }],
-
+    
     favorites: [{
       type: String,
     }],

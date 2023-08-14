@@ -1,1 +1,21 @@
-<h1>Game details</h1>
+<div class="container">
+    <h1>{{game.name}} details</h1>
+
+    <div class="row me-2 mt-5">
+
+        <div class="col-5">
+            <img src="{{game.image_url}}" alt="">
+        </div>
+
+        <div class="col-6 mt-5">
+            <h2>{{game.name}}</h2>
+            <hr>
+            <p>Published in {{game.year_published}}</p>
+
+            <p>{{game.description_preview}}</p>
+            <p>Players: {{game.players}}</p>
+            <p>Min age: {{game.min_age}}</p>
+        </div>
+    </div>
+</div>
+</div>

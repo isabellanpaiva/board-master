@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>All categories</h1>
+    <hr>
+    <div class="row justify-content-around">
+        {{#each categories}}
+        <div class="col-3 ">
+            <a href="/games/list/{{id}}/{{name}}">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {{/each}}
+    </div>
+</div>

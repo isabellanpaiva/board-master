@@ -9,14 +9,10 @@ const eventSchema = new Schema(
             trim: true
         },
 
-        // [TO BE CONFIRMED]
-
-        gameInfo: [{
-            type: Object,
+        gameInfo: {
+            type: String,
             required: true
-        }],
-
-        // [TO BE CONFIRMED]
+        },
 
         description: {
             type: String,
@@ -50,22 +46,6 @@ const eventSchema = new Schema(
     }
 
 )
-
-// [TO BE CONFIRMED]
-
-// eventSchema.pre('save', async function (next) {
-//     try {
-//         if (!this.gameInfo) {
-//             const gameResponse = await axios.get(`EXTERNAL_API_URL/${encodeURIComponent(this.gamePlayed)}`);
-//             this.gameInfo = gameResponse.data;
-//         }
-//         next();
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-
-// [TO BE CONFIRMED]
 
 const Event = model("Event", eventSchema)
 

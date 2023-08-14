@@ -1,4 +1,4 @@
-<h1>Welcome, {{user.username}}!</h1>
+<h1>Main info</h1>
 
 <div class="card mt-5 ms-5" style="max-width: 2000px;">
 
@@ -24,15 +24,8 @@
 
                 <br>
 
-
-                <form action="/users/edit/{{user.id}}" method="POST">
-                    <a class="btn btn-dark" href="/users/edit/{{user.id}}" role="button">Edit profile</a>
-                </form>
-
-                <br>
-
-                <form action="/users/delete/{{user.id}}" method="POST">
-                    <input class="btn btn-dark mt-3" type="submit" role="button" value="Delete profile">
+                <form action="/community/add-friend/{{user.id}}" method="POST">
+                    <a class="btn btn-dark" href="/community/add-friend/{{id}}" role="button">Add as a friend</a>
                 </form>
 
             </div>
@@ -43,8 +36,6 @@
 
 </div>
 
-<h1> My games </h1>
+<h1> Favorite games of {{user.username}} </h1>
 
-<h1> My friends </h1>
-
-<h1> Events I'm attending </h1>
+<h1> Events that {{user.username}} is attending </h1>

@@ -50,7 +50,6 @@ router.get("/profile/:user_id", isLoggedIn, (req, res, next) => {
 
             res.render("users/user-profile", { isLogged: req.session.currentUser, user, friendDetails, gameDetails })
 
-
         })
 
         .catch(err => next(err))

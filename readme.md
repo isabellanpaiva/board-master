@@ -1,4 +1,4 @@
-<h1> Project 2 </h1>
+<h2> Project 2 </h2>
 
 <h3> Endpoints overview </h3>
 
@@ -20,8 +20,8 @@
 |     POST    |        /users/edit/{{id}}       |      Edit user form handler     |      |
 |     POST    |       /users/delete/{{id}}      |     Delete user form render     |      |
 |     GET     |           /events/list          |           Events list           |      |
-|     GET     |          /events/create         |      New event form render      |      |
-|     POST    |          /events/create         |      New event form handler     |      |
+|     GET     |          /events/create/{{id}}  |      New event form render      |      |
+|     POST    |          /events/create/{{id}}  |      New event form handler     |      |
 |     GET     |       /events/edit/{{id}}       |      Edit event form render     |      |
 |     POST    |       /events/edit/{{id}}       |     Edit event form handler     |      |
 |     POST    |      /events/delete/{{id}}      |           Delete event          |      |

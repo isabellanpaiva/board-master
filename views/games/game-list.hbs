@@ -1,23 +1,35 @@
+<h2>{{category_name}}</h2>
+
 <div class="container">
 
-    <h2>{{category_name}}</h2>
-    <hr>
     <div class="row">
+
         {{#each games}}
+
         <div class="col-3">
+
             <div class="card" style="width: 18rem;">
+
                 <img src="{{image_url}}" class="card-img-top" alt="...">
+
                 <div class="card-body">
+
                     <h5 class="card-title">{{name}}</h5>
+
                     {{#if ...isLogged}}
+
                     <a href="/games/details/{{id}}" class=" btn btn-dark">Details</a>
 
-
-
                     {{/if}}
+
                 </div>
+
             </div>
+
         </div>
+
         {{/each}}
+
     </div>
+
 </div>

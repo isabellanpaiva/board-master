@@ -7,34 +7,36 @@
         {{!-- border border-2 border-dark rounded --}}
         {{!-- took the border out until we know how to add margin on it --}}
 
+        <form action="/events/create/{{game.id}}/{{game.name}}" method="post">
 
-        <form action="#" method="POST">
 
             <div class="inputBox mb-3 mb-4">
                 <label for="Title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="Title" name="title">
-                {{!-- <div class="form-text">Your super cool gamer name </div> --}}
+
+            </div>
+
+            <div class="inputBox mb-3 mb-4">
+                <label for="game" class="form-label">Game</label>
+                <input type="text" class="form-control" id="game" name="gameInfo" value="{{game.name}}">
             </div>
 
             <div class="inputBox mb-3 mb-4">
                 <label for="description" class="form-label">Description</label>
                 <input type="text" class="form-control" id="description" name="description">
-                {{!-- <div class="form-text">Game preferences and wharever</div> --}}
             </div>
 
             <div class="inputBox mb-3 mb-4">
                 <label for="Date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="Date" name="date">
-                {{!-- <div class="form-text">Example: cool-kid@boardmasters.com</div> --}}
+                <input type="datetime-local" class="form-control" id="Date" name="date">
             </div>
 
             <div class="inputBox mb-3 mb-4">
                 <label for="Location" class="form-label">Location</label>
                 <input type="text" class="form-control" id="Location" name="location">
-                {{!-- <div class="form-text">Be wise</div> --}}
             </div>
 
-            <button type="submit" class="btn btn-dark ">Subscribe</button>
+            <button type="submit" class="btn btn-dark ">Create</button>
 
         </form>
 

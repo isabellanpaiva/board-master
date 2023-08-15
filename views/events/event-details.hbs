@@ -1,0 +1,48 @@
+<h1>{{event.title}} details</h1>
+
+<hr>
+
+<div class="card mt-5 ms-5" style="max-width: 2000px;">
+
+    <div class="row">
+
+
+        <div class="col-md-8 mt-3">
+
+            <div class="card-body">
+
+                <p class="card-text">Game: {{event.gameName}}</p>
+
+                <br>
+
+                <p class="card-text">Description: {{event.description}}</p>
+
+                <br>
+
+                <p class="card-text"> Date: {{event.formattedDate}} {{event.formattedTime}}</p>
+
+                <br>
+
+                <p class="card-text"> Organize by: {{event.organizer.username}}</p>
+
+                <br>
+
+                {{#each event.attendees}}
+
+                <p class="card-text"> Attendees: {{username}}</p>
+
+                {{/each}}
+
+                <p class="card-text"> Location: {{location}}</p>
+
+                <br>
+
+                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-dark">Join</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

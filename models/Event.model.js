@@ -9,9 +9,13 @@ const eventSchema = new Schema(
             trim: true
         },
 
-        gameInfo: {
+        gameId: {
             type: String,
             required: true
+        },
+
+        gameName: {
+            type: String
         },
 
         description: {

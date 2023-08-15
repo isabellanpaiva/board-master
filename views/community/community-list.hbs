@@ -18,17 +18,24 @@
 
                 <br>
 
+                {{#if isFriend}}
+
+                <a class="btn btn-dark" href="#" role=" button">You are friends!</a>
+
+                {{/if}}
+
+                {{#unless isFriend}}
+
+                <a class="btn btn-dark" href="/community/add-friend/{{id}}" role=" button">Add as friend</a>
+
+                {{/unless}}
+
                 <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">See profile</a>
 
                 <br>
 
                 <br>
 
-                {{!-- {{#unless isFriend}} --}}
-
-                <a class="btn btn-dark" href="/community/add-friend/{{id}}" role=" button">Add as friend</a>
-
-                {{!-- {{/unless}} --}}
 
             </div>
 

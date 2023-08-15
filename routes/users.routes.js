@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require("../models/User.model")
+const gamesAPI = require('../services/games.service')
 const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.midleware')
 
@@ -18,25 +19,37 @@ router.get("/profile/:user_id", isLoggedIn, (req, res, next) => {
 
             //show friends
 
-            const newFriend = user.friends.map(async (friendId) => {
+            const showFriend = user.friends.map(async (friendId) => {
 
-                const friend = await User.findById(friendId).catch(err => {
+                const friend = await
 
-                    console.error("Error fetching friend:", err)
+                    User
 
-                    return null
-                })
+                        .findById(friendId)
+
                 return friend
 
             })
 
-            const friendDetails = await Promise.all(newFriend)
+            const friendDetails = await Promise.all(showFriend)
 
-            //show favorited games
+            // //show favorited games
 
-            //render the view 
+            const gamePromises = user.favorites.map((gameId) => {
 
-            res.render("users/user-profile", { isLogged: req.session.currentUser, user, friendDetails })
+                return gamesAPI.getGameDetails(gameId)
+
+                    .then((game) => game.data.games)
+            })
+
+            const games = await Promise.all(gamePromises)
+
+            const gameDetails = games.flat() //new array with sub-elements concatenated without []
+
+            // render view 
+
+            res.render("users/user-profile", { isLogged: req.session.currentUser, user, friendDetails, gameDetails })
+
 
         })
 

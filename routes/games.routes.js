@@ -27,21 +27,32 @@ router.get("/list/:category_id/:category_name", (req, res, next) => {
 })
 
 router.get("/details/:game_id", (req, res, next) => {
+
     const { game_id } = req.params
+
     let gameAdded
 
+    const user_id = req.session.currentUser._id
 
-    if (req.session.currentUser.favorites.includes(game_id)) {
-        gameAdded = true
-    }
-    else {
-        gameAdded = false
-    }
+    User
+        .findById(user_id)
 
-    gamesAPI
-        .getGameDetails(game_id)
-        .then(response => res.render('games/game-details', { game: response.data.games[0], isLogged: req.session.currentUser, gameAdded }))
-        .catch(err => next(err))
+        .then(user => {
+
+            if (user.favorites.includes(game_id)) {
+                return gameAdded = true
+            } else {
+                return gameAdded = false
+            }
+
+        })
+
+        .then(gamesAPI
+            .getGameDetails(game_id)
+            .then(response => res.render('games/game-details', { game: response.data.games[0], isLogged: req.session.currentUser, gameAdded }))
+            .catch(err => next(err)))
+
+
 
 })
 

@@ -1,17 +1,191 @@
-body {
-  font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* all pages */
+
+* {
+  margin: 0px;
+  padding: 0px;
 }
+
+body {
+  font-family: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-top: 120px;
+  margin-bottom: 100px;
+  /* background-image: url(../images/games-background.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+img {
+  width: 100%;
+}
+
+#menu {
+  background-color: black;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+#container {
+  margin-left: 0px;
+}
+
+/* home page */
+
+div.main-information {
+  /* background-color: black;
+  color: white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15vh
+}
+
+h1.title {
+  font-size: 175px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 3000;
+}
+
+h2.product-callout {
+  text-align: center;
+  font-size: 50px;
+  margin: 0px;
+}
+
+h3.product-features {
+  text-align: center;
+}
+
+a.call-to-action {
+  background-color: black;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  padding: 15px;
+  border-radius: 25px
+}
+
+/* navigation */
 
 a {
   color: #1fa3f0;
 }
 
-h1 {
+h2 {
   color: 15px;
-  margin-left: 50px;
-  margin-top: 50px;
+  text-align: center;
+}
+
+#inputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  /* padding-top: 50px; */
+}
+
+#pageTitle {
+  text-align: left;
 }
 
 #form-text {
   font-size: 10px;
 }
+
+/* user */
+
+#userInformation {
+  margin-bottom: 50px;
+}
+
+#userCard-avatar {
+  width: 20em;
+  height: 20em;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#gameInformation {
+  margin-bottom: 50px;
+}
+
+#gameCard {
+  border: none;
+  width: 15em;
+  margin-right: 10em;
+  margin-bottom: 2em;
+}
+
+#gameCover {
+  height: 100%;
+  width: 100%;
+}
+
+.card-header {
+  background: none;
+  overflow: hidden;
+  width: 20em;
+  height: 20em;
+}
+
+#friendsInformation {
+  margin-bottom: 50px;
+}
+
+#friendCard {
+  border: none;
+}
+
+/* games  */
+
+#categoryLabels {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  text-align: center;
+  height: 10rem;
+  width: 10rem;
+}
+
+/* community */
+
+#gameLinks {
+  text-decoration: none;
+  color: white;
+}
+
+/* [ FOR REFERENCE]
+
+* {
+  margin: 0px;
+  padding: 0px
+}
+
+ tags {
+  color: blue
+}
+
+.classes {
+  color: red;
+}
+
+#ids .classes {
+  color: red;
+}
+
+ul li a {
+  text-decoration: none;
+  color: purple;
+}
+
+*/

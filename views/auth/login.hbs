@@ -1,19 +1,17 @@
-<h1>Login</h1>
-
-<div class="row justify-content-center mt-5">
+<div class="row" id="inputBox">
 
     <div class="col-4">
 
-        {{!-- took the border out until we know how to add margin on it --}}
+        <h2>Login</h2>
 
         <form action="/login" method="post">
 
-            <div class="inputBox mb-3 mb-4">
+            <div class="mb-3 mb-4">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email">
             </div>
 
-            <div class="inputBox mb-3 mb-4">
+            <div class="mb-3 mb-4">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
@@ -22,7 +20,7 @@
             <p id="error">{{errorMessage}}</p>
             {{/if}}
 
-            <div class="inputBox mb-3 mb-4">
+            <div class="mb-3 mb-4">
                 <p> Don't have an account yet?
                     <a href="/signup">Sign up </a>
                 </p>

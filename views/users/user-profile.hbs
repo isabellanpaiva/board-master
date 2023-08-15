@@ -45,6 +45,34 @@
 
 <h1> My games </h1>
 
+<div class="row row-cols-3 mt-3 ms-4 me-4">
+
+    {{#each gameDetails}}
+
+    <div class="col-3">
+
+        <div class="card" style="width: 18rem;">
+
+            <img src="{{this.image_url}}" class="card-img-top" alt="...">
+
+            <div class="card-body">
+
+                <h5 class="card-title">{{this.name}}</h5>
+
+                <a href="/games/details/{{this.id}}" class=" btn btn-dark">Details</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>
+
+</div>
+
 <h1> My friends </h1>
 
 <div class="row row-cols-4 row-cols-md-4 g-4 mt-3 ms-4 me-4">

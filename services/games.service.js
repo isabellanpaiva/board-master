@@ -20,6 +20,10 @@ class gamesAPIHandler {
     getGameDetails(game_id) {
         return this.axiosApp.get(`/search?ids=${game_id}&client_id=oRHFQODxrP`)
     }
+
+    getGamebyName(game_name) {
+        return this.axiosApp.get(`/search?name=${game_name}&limit=100&client_id=oRHFQODxrP`)
+    }
 }
 
 const gamesAPI = new gamesAPIHandler()

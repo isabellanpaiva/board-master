@@ -84,4 +84,14 @@ router.get("/delete-game/:game_id", (req, res, next) => {
 
 })
 
+router.post('/search', (req, res, next) => {
+    const { gameName } = req.body
+
+    gamesAPI
+        .getGamebyName(gameName)
+        .then(response => res.render('games/game-list', { isLogged: req.session.currentUser, games: response.data.games }))
+        .catch(err => next(err))
+
+})
+
 module.exports = router

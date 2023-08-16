@@ -37,6 +37,9 @@
                 </ul>
                 <p class="card-text"> Location: {{event.location}}</p>
 
+                <a href="/events/edit/{{id}}" class=" btn btn-outline-warning">Edit</a>
+                <a href="/events/delete/{{id}}" class=" btn btn-outline-danger">Delete</a>
+
                 <br>
                 {{#unless eventJoined }}
                 <a href="/events/joinEvent/{{event.id}}" class=" btn btn-outline-success">Join</a>

@@ -36,6 +36,113 @@
 
 </div>
 
-<h2 id="pageTitle"> Favorite games of {{user.username}} </h2>
+<h2 id="pageTitle">Favorite games of {{user.username}}</h2>
 
-<h2 id="pageTitle"> Events that {{user.username}} is attending </h2>
+<div class="row mt-5 mb-5" id="#gamesSection">
+
+    {{#each gameDetails}}
+
+    <div class=" col-3 mt-5 mb-5" id="gamesInformation">
+
+        <div class="card mt-5 mb-5" id="gameCard">
+
+            <div class="card-header" id="gamesCardHeader">
+
+                <img src="{{this.image_url}}" class="card-img-top" alt="{{this.name}}" id="gameCover">
+
+            </div>
+
+            <div class="card-body" id="gamesCardBody">
+
+                <h5 class="card-title">{{this.name}}</h5>
+
+                <br>
+
+                <a href="/games/details/{{this.id}}" class=" btn btn-dark">Game details</a>
+
+                <br>
+
+                <a href="/games/delete-game/{{this.id}}" class="btn btn-dark">Remove from favorites</a>
+
+                <br>
+
+                <a class="btn btn-outline-info" href="/events/create/{{this.id}}/{{this.name}}" role="button">New
+                    Event</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>
+
+<div class="row" id="friendsInformation">
+
+    <h2 id="pageTitle"> Friends of {{user.username}}</h2>
+
+    {{#each friendDetails}}
+
+    <div class="col-4" id="friendCard">
+
+        <div class="card">
+
+            <img src="{{this.profilePicture}}">
+
+            <div class="card-body">
+
+                {{this.username}}
+
+                <br>
+
+                <br>
+
+                <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+
+                <a class="btn btn-dark" href="/community/remove-friend/{{id}}" role=" button">Remove friend</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>
+
+<div class="row" id="eventsInformation">
+
+    <h2 id="pageTitle"> Events that {{user.username}} is attending</h2>
+
+    {{#each eventsDetails}}
+
+    <div class="col-4" id="eventCard">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <p class="card-text">Event: {{this.title}}</p>
+
+                <p class="card-text">Game: {{this.gameName}}</p>
+
+                <p class="card-text">Description: {{this.description}}</p>
+
+                <p class="card-text"> Location: {{event.location}}</p>
+
+                <p class="card-text"> Date: {{this.formattedDate}} {{this.formattedTime}}</p>
+
+                <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>

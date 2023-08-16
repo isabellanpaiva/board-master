@@ -1,31 +1,27 @@
 <h2 id="pageTitle">All game categories</h2>
 
-<div class="container mt-5">
+<div class="row row-cols-6 mt-5">
 
-    <div class="row row-cols-6">
+    {{#each categories}}
 
-        {{#each categories}}
+    <div class="mb-5">
 
-        <div class="mb-5">
+        <div class="card" id="categoryLabels">
 
-            <div class="card" id="categoryLabels">
+            <a id="gameLinks" href="/games/list/{{id}}/{{name}}">
 
-                <a id="gameLinks" href="/games/list/{{id}}/{{name}}">
+                <div class="card-body">
 
-                    <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
 
-                        <h5 class="card-title">{{name}}</h5>
+                </div>
 
-                    </div>
-
-                </a>
-
-            </div>
+            </a>
 
         </div>
 
-        {{/each}}
-
     </div>
+
+    {{/each}}
 
 </div>

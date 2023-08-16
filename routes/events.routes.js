@@ -98,13 +98,22 @@ router.get("/withdrawEvent/:event_id", isLoggedIn, checkRoles('USER', 'ADMIN'), 
 router.get('/edit/:event_id', isLoggedIn, (req, res, next) => {
 
     const { event_id } = req.params
+    const user_id = req.session.currentUser._id
 
     Event
 
         .findById(event_id)
-        .then(event => res.render('events/event-edit', event))
-        .catch(err => next(err))
+        .then((event) => {
 
+            const isEventOwner = event.organizer._id.equals(user_id) || req.session.currentUser.role === 'ADMIN'
+
+            if (isEventOwner) {
+                res.render('events/event-edit', { event, isLogged: req.session.currentUser })
+            } else {
+                res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
+            }
+        })
+        .catch(err => next(err))
 })
 
 router.post('/edit/:event_id', isLoggedIn, (req, res, next) => {
@@ -114,20 +123,46 @@ router.post('/edit/:event_id', isLoggedIn, (req, res, next) => {
 
     Event
         .findByIdAndUpdate(event_id, { title, description, date, location })
-        .then(() => res.redirect(`/events/details/${event_id}`))
-        .catch(err => next(err))
+        .then((event) => {
 
+            const isEventOwner = event.organizer._id.equals(user_id) || req.session.currentUser.role === 'ADMIN'
+
+            if (isEventOwner) {
+                res.redirect(`/events/details/${event_id}`)
+            } else {
+                res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
+            }
+        })
+        .catch(err => next(err))
 })
 
 router.get('/delete/:event_id', isLoggedIn, (req, res, next) => {
 
-    const { event_id } = req.params
+    const { event_id } = req.params;
+    const user_id = req.session.currentUser._id
 
     Event
-        .findByIdAndDelete(event_id)
-        .then(() => res.redirect('/events'))
-        .catch(err => next(err))
+        .findById(event_id)
+        .then((event) => {
 
-})
+            if (!event) {
+                res.redirect('/events');
+                return;
+            }
+
+            const isEventOwner = event.organizer._id.equals(user_id) || req.session.currentUser.role === 'ADMIN';
+
+            if (isEventOwner) {
+                Event
+                    .findByIdAndDelete(event_id)
+                    .then(() => res.redirect('/events'))
+                    .catch(err => next(err));
+            } else {
+                res.redirect('/login?err=Access forbidden. You do not have the role to access this page');
+            }
+        })
+        .catch(err => next(err));
+});
+
 
 module.exports = router

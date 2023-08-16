@@ -9,6 +9,7 @@ const { formatDate } = require('./../utils/date-utils');
 const { formatTime } = require('./../utils/date-utils');
 
 
+
 router.get("/", (req, res, next) => {
 
     Event
@@ -25,7 +26,7 @@ router.get("/", (req, res, next) => {
             // console.log(ownerRole)
 
             res.render('events/events-list', { events, isLogged: req.session.currentUser })
-            res.render('events/events-list', { events, isLogged: req.session.currentUser, ownerRole })
+            // res.render('events/events-list', { events, isLogged: req.session.currentUser, ownerRole })
 
         })
 
@@ -75,6 +76,7 @@ router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
         })
         .then(Event
             .findById(event_id)
+            // .then(event => res.json(event))
             .populate('organizer')
             .populate('attendees')
             .then(event => {

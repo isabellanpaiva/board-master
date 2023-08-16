@@ -35,7 +35,10 @@
 
                     {{/each}}
                 </ul>
-                <p class="card-text"> Location: {{location}}</p>
+                <p class="card-text"> Location: {{event.location}}</p>
+
+                <a href="/events/edit/{{id}}" class=" btn btn-outline-warning">Edit</a>
+                <a href="/events/delete/{{id}}" class=" btn btn-outline-danger">Delete</a>
 
                 <br>
                 {{#unless eventJoined }}

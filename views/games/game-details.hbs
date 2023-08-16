@@ -6,14 +6,22 @@
 
         <div class="col-5">
             <img src="{{game.image_url}}" alt="{{game.name}}">
+
             <br><br>
+
+            {{#if isLogged}}
+
             {{#if gameAdded}}
             <a href="/games/delete-game/{{game.id}}" class="btn btn-outline-danger">Remove from favorites</a>
             {{/if}}
+
             {{#unless gameAdded}}
             <a href="/games/add-game/{{game.id}}" class="btn btn-outline-success">Add to favorites</a>
             {{/unless}}
+
             <a class="btn btn-outline-info" href="/events/create/{{game.id}}/{{game.name}}" role="button">New Event</a>
+
+            {{/if}}
 
         </div>
 

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const gamesAPI = require('../services/games.service')
+const { isLoggedIn } = require('../middlewares/route-guard')
 const { Error } = require('mongoose')
 const Event = require("../models/Event.model")
 const User = require("../models/User.model")
@@ -11,13 +12,29 @@ const { formatTime } = require('./../utils/date-utils');
 router.get("/", (req, res, next) => {
 
     Event
+
         .find()
-        .then(events => res.render('events/events-list', { events, isLogged: req.session.currentUser }))
+
+        // .then(events => res.render('events/events-list', { events, isLogged: req.session.currentUser }))
+        .then((events) => {
+
+            // const ownerRole = events.map(event => ({
+            //     isOwner: req.session.currentUser._id.toString() === event.organizer.toString()
+            // }))
+
+            // console.log(ownerRole)
+
+            res.render('events/events-list', { events, isLogged: req.session.currentUser })
+            res.render('events/events-list', { events, isLogged: req.session.currentUser, ownerRole })
+
+        })
+
         .catch(err => next(err))
+
 
 })
 
-router.get("/create/:game_id/:game_name", (req, res, next) => {
+router.get("/create/:game_id/:game_name", isLoggedIn, (req, res, next) => {
     const { game_id } = req.params
 
     gamesAPI
@@ -28,7 +45,7 @@ router.get("/create/:game_id/:game_name", (req, res, next) => {
 
 })
 
-router.post("/create/:game_id/:game_name", (req, res, next) => {
+router.post("/create/:game_id/:game_name", isLoggedIn, (req, res, next) => {
     const { game_id, game_name } = req.params
     const { title, description, date, location } = req.body
     const organizer = req.session.currentUser._id
@@ -39,12 +56,9 @@ router.post("/create/:game_id/:game_name", (req, res, next) => {
         .then(() => res.redirect('/events/'))
         .catch(err => next(err))
 
-
-
-
 })
 
-router.get('/details/:event_id', (req, res, next) => {
+router.get('/details/:event_id', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
     const user_id = req.session.currentUser._id
     let eventJoined
@@ -73,7 +87,7 @@ router.get('/details/:event_id', (req, res, next) => {
 
 })
 
-router.get('/joinEvent/:event_id', (req, res, next) => {
+router.get('/joinEvent/:event_id', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
     const user_id = req.session.currentUser._id
 
@@ -85,7 +99,7 @@ router.get('/joinEvent/:event_id', (req, res, next) => {
 
 })
 
-router.get("/withdrawEvent/:event_id", (req, res, next) => {
+router.get("/withdrawEvent/:event_id", isLoggedIn, (req, res, next) => {
 
     const { event_id } = req.params
     const user_id = req.session.currentUser._id
@@ -95,22 +109,21 @@ router.get("/withdrawEvent/:event_id", (req, res, next) => {
         .then(() => res.redirect('/events'))
         .catch(err => next(err))
 
-
-
-
 })
 
-router.get('/edit/:event_id', (req, res, next) => {
+router.get('/edit/:event_id', isLoggedIn, (req, res, next) => {
+
     const { event_id } = req.params
 
     Event
+
         .findById(event_id)
         .then(event => res.render('events/event-edit', event))
         .catch(err => next(err))
 
 })
 
-router.post('/edit/:event_id', (req, res, next) => {
+router.post('/edit/:event_id', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
     const { title, description, date, location } = req.body
 
@@ -121,7 +134,7 @@ router.post('/edit/:event_id', (req, res, next) => {
 
 })
 
-router.get('/delete/:event_id', (req, res, next) => {
+router.get('/delete/:event_id', isLoggedIn, (req, res, next) => {
     const { event_id } = req.params
 
     Event

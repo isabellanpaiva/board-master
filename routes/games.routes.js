@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const gamesAPI = require('../services/games.service')
 const User = require("../models/User.model")
 const { isLoggedIn } = require('../middlewares/route-guard')
@@ -30,31 +29,32 @@ router.get("/details/:game_id", (req, res, next) => {
 
     const { game_id } = req.params
 
-    let gameAdded
+    if (!req.session.currentUser) {
 
-    const user_id = req.session.currentUser._id
-
-    User
-        .findById(user_id)
-
-        .then(user => {
-
-            if (user.favorites.includes(game_id)) {
-                return gameAdded = true
-            } else {
-                return gameAdded = false
-            }
-
-        })
-
-        .then(gamesAPI
+        gamesAPI
             .getGameDetails(game_id)
-            .then(response => res.render('games/game-details', { game: response.data.games[0], isLogged: req.session.currentUser, gameAdded }))
-            .catch(err => next(err)))
+            .then(response => res.render('games/game-details', { game: response.data.games[0], isLogged: req.session.currentUser }))
+            .catch(err => next(err))
 
+    } else {
 
+        const user_id = req.session.currentUser._id
 
+        User
+            .findById(user_id)
+            .then(user => {
+                const gameAdded = user.favorites.includes(game_id)
+                return gameAdded
+            })
+            .then(gameAdded => {
+                gamesAPI
+                    .getGameDetails(game_id)
+                    .then(response => res.render('games/game-details', { game: response.data.games[0], isLogged: req.session.currentUser, gameAdded }))
+                    .catch(err => next(err))
+            })
+    }
 })
+
 
 router.get("/add-game/:game_id", (req, res, next) => {
     const { game_id } = req.params
@@ -76,7 +76,8 @@ router.get("/delete-game/:game_id", (req, res, next) => {
 
     User
         .findByIdAndUpdate({ _id: user_id }, { $pull: { favorites: game_id } })
-        .then(() => res.redirect(`/games/details/${game_id}`))
+        .then(() => res.redirect('/games/categories'))
+        // .then(() => res.redirect(`/games/details/${game_id}`))
         .catch(err => next(err))
 
 

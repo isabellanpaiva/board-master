@@ -69,7 +69,7 @@ router.get("/add-game/:game_id", (req, res, next) => {
 
 })
 
-router.get("/delete-game/:game_id/", (req, res, next) => {
+router.get("/delete-game/:game_id", (req, res, next) => {
 
     const { game_id, } = req.params
     const user_id = req.session.currentUser._id

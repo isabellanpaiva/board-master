@@ -9,10 +9,6 @@ const formatDate = date => {
     return [day, month, year].join('-')
 }
 
-module.exports = {
-    formatDate
-}
-
 const formatTime = date => {
     let hours = '' + date.getHours();
     let minutes = '' + date.getMinutes();

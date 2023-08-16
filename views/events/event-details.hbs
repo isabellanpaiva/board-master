@@ -27,17 +27,24 @@
 
                 <br>
 
-                {{#each event.attendees}}
+                <p>Attendees:</p>
+                <ul>
+                    {{#each event.attendees}}
 
-                <p class="card-text"> Attendees: {{username}}</p>
+                    <li>{{username}}</li>
 
-                {{/each}}
-
+                    {{/each}}
+                </ul>
                 <p class="card-text"> Location: {{location}}</p>
 
                 <br>
+                {{#unless eventJoined }}
+                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-outline-success">Join</a>
+                {{/unless}}
+                {{#if eventJoined}}
+                <a href="/events/withdrawEvent/{{event.id}}" class=" btn btn-outline-danger">Withdraw</a>
+                {{/if}}
 
-                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-dark">Join</a>
 
             </div>
 

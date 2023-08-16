@@ -1,1 +1,46 @@
 <h2>Edit event</h2>
+
+<hr>
+<div class="row justify-content-center mt-5">
+
+    <div class="col-4">
+
+        {{!-- border border-2 border-dark rounded --}}
+        {{!-- took the border out until we know how to add margin on it --}}
+
+        <form action="/events/edit/{{id}}" method="post">
+
+
+            <div class="inputBox mb-3 mb-4">
+                <label for="Title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="Title" name="title" value="{{title}}">
+
+            </div>
+
+            <div class="inputBox mb-3 mb-4">
+                <label for="game" class="form-label">Game</label>
+                <input type="text" class="form-control" id="game" name="gameInfo" value="{{gameName}}" readonly>
+            </div>
+
+            <div class="inputBox mb-3 mb-4">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" value="{{description}}">
+            </div>
+
+            {{!-- <div class="inputBox mb-3 mb-4">
+                <label for="Date" class="form-label">Date</label>
+                <input type="datetime-local" class="form-control" id="Date" name="date" value="{{date}}">
+            </div> --}}
+
+            <div class="inputBox mb-3 mb-4">
+                <label for="Location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="Location" name="location" value="{{location}}">
+            </div>
+
+            <button type="submit" class="btn btn-dark ">Edit</button>
+
+        </form>
+
+    </div>
+
+</div>

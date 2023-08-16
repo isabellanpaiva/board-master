@@ -32,7 +32,7 @@ const { trusted } = require('mongoose')
 
 //comunity list 
 
-router.get("/", isLoggedIn, (req, res, next) => {
+router.get("/", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const currentUser = req.session.currentUser._id
 
@@ -72,7 +72,7 @@ router.get("/", isLoggedIn, (req, res, next) => {
 
 //comunity profiles
 
-router.get("/details/:friend_id", isLoggedIn, async (req, res, next) => {
+router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), async (req, res, next) => {
 
     try {
         const { friend_id } = req.params
@@ -88,7 +88,7 @@ router.get("/details/:friend_id", isLoggedIn, async (req, res, next) => {
 });
 
 
-router.get("/details/:friend_id", isLoggedIn, (req, res, next) => {
+router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { friend_id } = req.params
 
@@ -104,7 +104,7 @@ router.get("/details/:friend_id", isLoggedIn, (req, res, next) => {
 
 // add friend (handler)
 
-router.get("/add-friend/:friend_id", isLoggedIn, (req, res, next) => {
+router.get("/add-friend/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { friend_id } = req.params
 
@@ -119,7 +119,7 @@ router.get("/add-friend/:friend_id", isLoggedIn, (req, res, next) => {
 
 // remove friend (handler)
 
-router.get("/remove-friend/:friend_id", isLoggedIn, (req, res, next) => {
+router.get("/remove-friend/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { friend_id } = req.params
 

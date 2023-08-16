@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const gamesAPI = require('../services/games.service')
 const User = require("../models/User.model")
-const { isLoggedIn } = require('../middlewares/route-guard')
+const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-guard')
 
 router.get("/categories", (req, res, next) => {
 
@@ -56,10 +56,11 @@ router.get("/details/:game_id", (req, res, next) => {
 })
 
 
-router.get("/add-game/:game_id", (req, res, next) => {
-    const { game_id } = req.params
-    const user_id = req.session.currentUser._id
+router.get("/add-game/:game_id", checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
+    const { game_id } = req.params
+
+    const user_id = req.session.currentUser._id
 
 
     User
@@ -69,7 +70,7 @@ router.get("/add-game/:game_id", (req, res, next) => {
 
 })
 
-router.get("/delete-game/:game_id", (req, res, next) => {
+router.get("/delete-game/:game_id", checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { game_id, } = req.params
     const user_id = req.session.currentUser._id
@@ -80,12 +81,10 @@ router.get("/delete-game/:game_id", (req, res, next) => {
         // .then(() => res.redirect(`/games/details/${game_id}`))
         .catch(err => next(err))
 
-
-
-
 })
 
-router.post('/search', (req, res, next) => {
+router.post('/search', checkRoles('USER', 'ADMIN'), (req, res, next) => {
+
     const { gameName } = req.body
 
     gamesAPI

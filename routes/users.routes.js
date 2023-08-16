@@ -7,7 +7,7 @@ const uploaderMiddleware = require('../middlewares/uploader.midleware')
 
 // my profile 
 
-router.get("/profile/:user_id", isLoggedIn, (req, res, next) => {
+router.get("/profile/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { user_id } = req.params
 
@@ -58,21 +58,30 @@ router.get("/profile/:user_id", isLoggedIn, (req, res, next) => {
 
 // edit profile (render)
 
-router.get("/edit/:user_id", isLoggedIn, (req, res, next) => {
+router.get("/edit/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { user_id } = req.params
 
     User
         .findById(user_id)
         .then((user) => {
-            res.render("users/user-edit", { isLogged: req.session.currentUser, user })
+
+            const adminRole = req.session.currentUser.role === 'ADMIN'
+            const ownerRole = req.session.currentUser.role === 'USER' && req.session.currentUser._id.toString() === user_id
+
+            if (adminRole || ownerRole) {
+                res.render("users/user-edit", { user, isLogged: req.session.currentUser })
+            } else {
+                res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
+            }
+
         })
         .catch(err => next(err))
 })
 
 // edit profile (handler)
 
-router.post('/edit/:user_id', isLoggedIn, (req, res, next) => {
+router.post('/edit/:user_id', isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { user_id } = req.params
 
@@ -82,21 +91,39 @@ router.post('/edit/:user_id', isLoggedIn, (req, res, next) => {
     User
         // .findByIdAndUpdate(user_id, { username, email, description }, { path })
         .findByIdAndUpdate(user_id, { username, email, description })
-        .then(() => res.redirect(`/users/profile/${user_id}`))
-        .catch(err => next(err))
+        .then(() => {
+
+            const adminRole = req.session.currentUser.role === 'ADMIN'
+            const ownerRole = req.session.currentUser.role === 'USER' && req.session.currentUser._id.toString() === user_id
+
+            if (adminRole || ownerRole) {
+                res.redirect(`/users/profile/${user_id}`)
+            } else {
+                res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
+            }
+        }).catch(err => next(err))
 })
 
 // delete profile
 
-router.post('/delete/:user_id', isLoggedIn, (req, res, next) => {
+router.post('/delete/:user_id', isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { user_id } = req.params;
 
-    User.findByIdAndDelete(user_id)
+    User
 
+        .findByIdAndDelete(user_id)
         .then(() => {
-            req.session.currentUser = null;
-            res.redirect('/');
+
+            const adminRole = req.session.currentUser.role === 'ADMIN'
+            const ownerRole = req.session.currentUser.role === 'USER' && req.session.currentUser._id.toString() === user_id
+
+            if (adminRole || ownerRole) {
+                req.session.currentUser = null;
+                res.redirect('/');
+            } else {
+                res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
+            }
         })
         .catch(err => next(err));
 });

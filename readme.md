@@ -10,6 +10,7 @@
 |     GET     |      /games/details/{{id}}      |          Game details           |      |
 |     POST    |      /games/add-game/{{id}}     |   Add a game from your profile  |      |
 |     POST    |    /games/delete-game/{{id}}    | Remove a game from your profile |      |
+|     POST    |           /games/search         | Search for a game by its name   |      |
 |     GET     |           /users/login          |            Login page           |      |
 |     POST    |           /users/login          |            Login page           |      |
 |     GET     |          /users/signup          |       New user form render      |      |

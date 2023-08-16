@@ -1,35 +1,33 @@
-<h2>{{category_name}}</h2>
+<h2 id="pageTitle"> Category: {{category_name}} </h2>
 
-<div class="container">
+<div class="row mt-5 mb-5" id="#gamesSection">
 
-    <div class="row">
+    {{#each games}}
 
-        {{#each games}}
+    <div class=" col-3 mt-5 mb-5" id="gamesInformation">
 
-        <div class="col-3">
+        <div class="card mb-5" id="gameCard">
 
-            <div class="card" style="width: 18rem;">
+            <div class="card-header" id="gamesCardHeader">
 
-                <img src="{{image_url}}" class="card-img-top" alt="...">
+                <img src="{{image_url}}" class="card-img-top " alt="{{name}}" id="gameCover">
 
-                <div class="card-body">
+            </div>
 
-                    <h5 class="card-title">{{name}}</h5>
+            <div class="card-body" id="gamesCardBody">
 
-                    {{!-- {{#if ...isLogged}} --}}
+                <h5 class="card-title">{{name}}</h5>
 
-                    <a href="/games/details/{{id}}" class=" btn btn-dark">Details</a>
+                <br>
 
-                    {{!-- {{/if}} --}}
-
-                </div>
+                <a href="/games/details/{{id}}" class=" btn btn-dark">Game details</a>
 
             </div>
 
         </div>
 
-        {{/each}}
-
     </div>
+
+    {{/each}}
 
 </div>

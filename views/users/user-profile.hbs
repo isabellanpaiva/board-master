@@ -24,74 +24,117 @@
 
 </div>
 
-<div class="row" id="gameInformation">
+{{!-- <div="container"> --}}
 
     <h2 id="pageTitle"> My games </h2>
 
-    {{#each gameDetails}}
+    <div class="row mt-5 mb-5" id="#gamesSection">
 
-    <div class="col-4" id="gameCard">
+        {{#each gameDetails}}
 
-        <div class="card-header">
+        <div class=" col-3 mt-5 mb-5" id="gamesInformation">
 
-            <img src="{{this.image_url}}" class="card-img-top" alt="..." id="gameCover">
+            <div class="card mt-5 mb-5" id="gameCard">
 
-        </div>
+                <div class="card-header" id="gamesCardHeader">
 
-        <div class="card-body">
+                    <img src="{{this.image_url}}" class="card-img-top" alt="{{this.name}}" id="gameCover">
 
-            <h5 class="card-title">{{this.name}}</h5>
+                </div>
 
-            <br>
+                <div class="card-body" id="gamesCardBody">
 
-            <a href="/games/details/{{this.id}}" class=" btn btn-dark">Details</a>
+                    <h5 class="card-title">{{this.name}}</h5>
 
-            <br>
+                    <br>
 
-            <br>
+                    <a href="/games/details/{{this.id}}" class=" btn btn-dark">Game details</a>
 
-            <a href="/games/delete-game/{{this.id}}" class="btn btn-dark">Remove from favorites</a>
+                    <br>
 
-            <a class="btn btn-outline-info" href="/events/create/{{this.id}}/{{this.name}}" role="button">New Event</a>
+                    <a href="/games/delete-game/{{this.id}}" class="btn btn-dark">Remove from favorites</a>
 
-        </div>
+                    <br>
 
-    </div>
+                    <a class="btn btn-outline-info" href="/events/create/{{this.id}}/{{this.name}}" role="button">New
+                        Event</a>
 
-    {{/each}}
-
-</div>
-
-<div class="row" id="friendsInformation">
-
-    <h2 id="pageTitle"> My friends </h2>
-
-    {{#each friendDetails}}
-
-    <div class="col-4" id="friendCard">
-
-        <div class="card">
-
-            <img src="{{this.profilePicture}}">
-
-            <div class="card-body">
-
-                {{this.username}}
-
-                <br>
-
-                <br>
-
-                <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">See profile</a>
-
-                <a class="btn btn-dark" href="/community/remove-friend/{{id}}" role=" button">Remove friend</a>
+                </div>
 
             </div>
 
         </div>
 
+        {{/each}}
+
     </div>
 
-    {{/each}}
+    {{!-- </div> --}}
 
-</div>
+    <div class="row" id="friendsInformation">
+
+        <h2 id="pageTitle"> My friends </h2>
+
+        {{#each friendDetails}}
+
+        <div class="col-3" id="friendCard">
+
+            <div class="card">
+
+                <img src="{{this.profilePicture}}">
+
+                <div class="card-body">
+
+                    {{this.username}}
+
+                    <br>
+
+                    <br>
+
+                    <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+
+                    <a class="btn btn-dark" href="/community/remove-friend/{{id}}" role=" button">Remove friend</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+
+    </div>
+
+    <div class="row" id="eventsInformation">
+
+        <h2 id="pageTitle"> My events </h2>
+
+        {{#each eventsDetails}}
+
+        <div class="col-3" id="eventCard">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <p class="card-text">Event: {{this.title}}</p>
+
+                    <p class="card-text">Game: {{this.gameName}}</p>
+
+                    <p class="card-text">Description: {{this.description}}</p>
+
+                    <p class="card-text"> Location: {{event.location}}</p>
+
+                    <p class="card-text"> Date: {{this.formattedDate}} {{this.formattedTime}}</p>
+
+                    <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+
+    </div>

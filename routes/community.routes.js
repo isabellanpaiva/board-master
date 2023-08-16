@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const User = require("../models/User.model")
+const Event = require("../models/Event.model")
+const gamesAPI = require('../services/games.service')
 const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.midleware')
 const { trusted } = require('mongoose')
@@ -70,23 +72,26 @@ router.get("/", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 // ----------- [REVIEW] ----------
 
 
-//comunity profiles
+//community profiles
 
-router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), async (req, res, next) => {
+// router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), async (req, res, next) => {
 
-    try {
-        const { friend_id } = req.params
+//     try {
+//         const { friend_id } = req.params
 
-        const currentUser = req.session.currentUser
+//         const currentUser = req.session.currentUser
 
-        const user = await User.findById(friend_id);
+//         const user = await
 
-        res.render("community/users-profile", { user, isLogged: currentUser })
-    } catch (err) {
-        next(err);
-    }
-});
+//             User.findById(friend_id);
 
+//         res.render("community/users-profile", { user, isLogged: currentUser })
+//     } catch (err) {
+//         next(err);
+//     }
+// });
+
+//friends profiles
 
 router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
@@ -95,8 +100,52 @@ router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req,
     User
 
         .findById(friend_id)
-        .then((user) => {
-            res.render("community/users-profile", { user, isLogged: req.session.currentUser })
+
+        .then(async (user) => {
+
+            //show friends of friends
+
+            const showFriend = user.friends.map(async (friendId) => {
+
+                const friend = await
+
+                    User
+
+                        .findById(friendId)
+
+                return friend
+
+            })
+
+            const friendDetails = await Promise.all(showFriend)
+
+            // //show friends favorited games
+
+            const gamePromises = user.favorites.map((gameId) => {
+
+                return gamesAPI.getGameDetails(gameId)
+
+                    .then((game) => game.data.games)
+            })
+
+            const games = await Promise.all(gamePromises)
+
+            const gameDetails = games.flat() //new array with sub-elements concatenated without []
+
+            // show friends events 
+
+            const eventsDetails = await Event
+
+                .find({
+                    $or: [{ organizer: friend_id }, { attendees: friend_id }]
+                })
+                .populate('organizer')
+                .populate('attendees')
+
+            // render view 
+
+
+            res.render("community/users-profile", { user, isLogged: req.session.currentUser, friendDetails, gameDetails, eventsDetails })
         })
         .catch(err => next(err))
 

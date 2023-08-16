@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require("../models/User.model")
+const Event = require("../models/Event.model")
 const gamesAPI = require('../services/games.service')
 const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-guard')
 const uploaderMiddleware = require('../middlewares/uploader.midleware')
@@ -17,7 +18,7 @@ router.get("/profile/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, r
 
         .then(async (user) => {
 
-            //show friends
+            //show my friends
 
             const showFriend = user.friends.map(async (friendId) => {
 
@@ -46,9 +47,19 @@ router.get("/profile/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, r
 
             const gameDetails = games.flat() //new array with sub-elements concatenated without []
 
+            // show my events 
+
+            const eventsDetails = await Event
+
+                .find({
+                    $or: [{ organizer: user_id }, { attendees: user_id }]
+                })
+                .populate('organizer')
+                .populate('attendees')
+
             // render view 
 
-            res.render("users/user-profile", { isLogged: req.session.currentUser, user, friendDetails, gameDetails })
+            res.render("users/user-profile", { user, isLogged: req.session.currentUser, friendDetails, gameDetails, eventsDetails })
 
         })
 

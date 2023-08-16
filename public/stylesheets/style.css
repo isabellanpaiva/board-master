@@ -1,4 +1,4 @@
-/* all pages */
+/* ----------- [ALL PAGES] -----------  */
 
 * {
   margin: 0px;
@@ -33,7 +33,7 @@ footer {
   margin-left: 0px;
 }
 
-/* home page */
+/* ----------- [HOME PAGE] -----------  */
 
 div.main-information {
   /* background-color: black;
@@ -72,7 +72,7 @@ a.call-to-action {
   border-radius: 25px
 }
 
-/* navigation */
+/* ----------- [NAVIGATION] -----------  */
 
 a {
   color: #1fa3f0;
@@ -100,7 +100,7 @@ h2 {
   font-size: 10px;
 }
 
-/* user */
+/* ----------- [USER] -----------  */
 
 #userInformation {
   margin-bottom: 50px;
@@ -111,22 +111,6 @@ h2 {
   height: 20em;
   object-fit: cover;
   border-radius: 50%;
-}
-
-#gameInformation {
-  margin-bottom: 50px;
-}
-
-#gameCard {
-  border: none;
-  width: 15em;
-  margin-right: 10em;
-  margin-bottom: 2em;
-}
-
-#gameCover {
-  height: 100%;
-  width: 100%;
 }
 
 .card-header {
@@ -144,7 +128,9 @@ h2 {
   border: none;
 }
 
-/* games  */
+/* ----------- [GAMES] -----------  */
+
+/* ----------- [games categories] -----------  */
 
 #categoryLabels {
   display: flex;
@@ -157,7 +143,49 @@ h2 {
   width: 10rem;
 }
 
-/* community */
+/* ----------- [games list] -----------  */
+
+#gamesSection {
+  justify-content: center
+}
+
+#gamesInformation {
+  height: 25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center
+}
+
+#gameCard {
+  border: none;
+  width: 20rem;
+}
+
+#gameCover {
+  height: 85%;
+  width: 85%;
+}
+
+#gamesCardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gamesCardHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* div .card-body {
+  justify-content: center;
+} */
+
+/* ----------- [COMUNITY] -----------  */
 
 #gameLinks {
   text-decoration: none;

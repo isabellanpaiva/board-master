@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const geocodingApi = require('../services/geocoding.service')
 const gamesAPI = require('../services/games.service')
 const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-guard')
 const { Error } = require('mongoose')
@@ -34,11 +35,17 @@ router.get("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN'
 router.post("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { game_id, game_name } = req.params
-    const { title, description, date, location } = req.body
+    const { title, description, date, address } = req.body
     const organizer = req.session.currentUser._id
 
+
+    // geocodingApi
+    //     .getCoordenates(address)
+    //     .then(response => res.send(response))
+    //     .catch(err => next(err))
+
     Event
-        .create({ title, gameId: game_id, gameName: game_name, description, date, location, organizer })
+        .create({ title, gameId: game_id, gameName: game_name, description, date, address, organizer })
         .then(() => res.redirect('/events/'))
         .catch(err => next(err))
 

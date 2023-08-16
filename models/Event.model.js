@@ -27,10 +27,19 @@ const eventSchema = new Schema(
             type: Date,
             required: true
         },
+        address: {
+            type: String
+        },
 
         location: {
-            type: String,
-            required: true
+            type: {
+                type: String,
+
+            },
+
+            coordenates: {
+                type: [Number]
+            }
         },
 
         organizer: {

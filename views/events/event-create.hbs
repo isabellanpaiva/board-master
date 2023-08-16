@@ -32,8 +32,8 @@
             </div>
 
             <div class="inputBox mb-3 mb-4">
-                <label for="Location" class="form-label">Location</label>
-                <input type="text" class="form-control" id="Location" name="location">
+                <label for="address" class="form-label">Location</label>
+                <input type="text" class="form-control" id="autocomplete" name="address">
             </div>
 
             <button type="submit" class="btn btn-dark ">Create</button>
@@ -44,6 +44,9 @@
 
 </div>
 
+
 <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPQd2uaw4aqmx9lrJE7pESbjI9eBxf4sY&libraries=places&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPQd2uaw4aqmx9lrJE7pESbjI9eBxf4sY&libraries=places&callback=initMap"
+    async defer>
     </script>
+<script src="/js/autocomplete.js"></script>

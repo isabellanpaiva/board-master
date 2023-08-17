@@ -1,14 +1,10 @@
-<h2>Create event</h2>
-<hr>
-<div class="row justify-content-center mt-5">
+<div class="row" id="inputBox">
+
+    <h2>Create event</h2>
 
     <div class="col-4">
 
-        {{!-- border border-2 border-dark rounded --}}
-        {{!-- took the border out until we know how to add margin on it --}}
-
         <form action="/events/create/{{game.id}}/{{game.name}}" method="post">
-
 
             <div class="inputBox mb-3 mb-4">
                 <label for="Title" class="form-label">Title</label>
@@ -36,7 +32,7 @@
                 <input type="text" class="form-control" id="autocomplete" name="address">
             </div>
 
-            <button type="submit" class="btn btn-dark ">Create</button>
+            <button type="submit" class="btn btn-light ">Create</button>
 
         </form>
 

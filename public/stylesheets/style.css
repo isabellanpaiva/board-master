@@ -9,7 +9,7 @@ body {
   font-family: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin-top: 120px;
   margin-bottom: 100px;
-  /* background-color: #1fa3f0; */
+  /* background-color: gray */
   /* background-image: url(../images/games-background.jpeg);
   background-size: cover;
   background-repeat: no-repeat; */
@@ -105,16 +105,16 @@ h2 {
 
 /* personal information */
 
-#userSection {}
+#userSection {
+  background-color: white
+}
 
 #userInformation {
   display: flex;
   flex-direction: row;
 }
 
-#userCard {
-  border: none;
-}
+#userCard {}
 
 /* how to make an circular avatar picture?  */
 #userAvatar {
@@ -169,6 +169,10 @@ h2 {
 
 /* events information  */
 
+#eventCard {
+  border: none;
+}
+
 /* ----------- [GAMES] -----------  */
 
 /* ----------- [games categories] -----------  */
@@ -183,8 +187,6 @@ h2 {
   height: 10rem;
   width: 10rem;
 }
-
-/* ----------- [games list] -----------  */
 
 #gamesSection {}
 

@@ -5,11 +5,7 @@
 
     <div class="col-4">
 
-        {{!-- border border-2 border-dark rounded --}}
-        {{!-- took the border out until we know how to add margin on it --}}
-
         <form action="/events/edit/{{id}}" method="post">
-
 
             <div class="inputBox mb-3 mb-4">
                 <label for="Title" class="form-label">Title</label>
@@ -37,12 +33,10 @@
                 <input type="text" class="form-control" id="Location" name="location" value="{{location}}">
             </div>
 
-            <button type="submit" class="btn btn-dark ">Edit</button>
+            <button type="submit" class="btn btn-outline-success ">Save changes</button>
 
         </form>
 
     </div>
-
-
 
 </div>

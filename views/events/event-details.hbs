@@ -1,52 +1,55 @@
-<h1>{{event.title}} details</h1>
+<h2 id="pageTitle"> Details of {{event.title}}</h2>
 
-<hr>
-
-<div class="card mt-5 ms-5" style="max-width: 2000px;">
+<div class="card mt-5" style="max-width: 2500px;">
 
     <div class="row">
 
-
-        <div class="col-md-8 mt-3">
+        <div class="col-md-6 mt-3">
 
             <div class="card-body">
 
-                <p class="card-text">Game: {{event.gameName}}</p>
+                <p class="card-text"> <strong>{{event.title}}</strong></p>
 
                 <br>
 
-                <p class="card-text">Description: {{event.description}}</p>
+                <p class="card-text"> <strong> Game: </strong>{{event.gameName}}</p>
 
                 <br>
 
-                <p class="card-text"> Date: {{event.formattedDate}} {{event.formattedTime}}</p>
+                <p class="card-text"> <strong> Description: </strong>{{event.description}}</p>
 
                 <br>
 
-                <p class="card-text"> Organize by: {{event.organizer.username}}</p>
+                <p class="card-text"> <strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
 
                 <br>
 
-                <p>Attendees:</p>
+                <p class="card-text"> <strong>Address:</strong> {{event.address}}</p>
+
+                <br>
+
+                <p class="card-text"> <strong> Organized by: </strong> {{event.organizer.username}}</p>
+
+                <br>
+
+                <p class="card-text"> <strong> Attendees: </strong></p>
+
                 <ul>
                     {{#each event.attendees}}
-
                     <li>{{username}}</li>
-
                     {{/each}}
                 </ul>
-                <p class="card-text"> Location: {{event.address}}</p>
 
                 {{#if isEventOwner}}
-                <a href="/events/edit/{{event.id}}" class=" btn btn-outline-warning">Edit</a>
-                <a href="/events/delete/{{event.id}}" class=" btn btn-outline-danger">Delete</a>
+                <a href="/events/edit/{{event.id}}" class=" btn btn-outline-warning">Edit event</a>
+                <a href="/events/delete/{{event.id}}" class=" btn btn-outline-danger">Delete event</a>
                 {{/if}}
 
-
                 <br>
+
                 {{#unless isEventOwner }}
                 {{#unless eventJoined }}
-                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-outline-success">Join</a>
+                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-outline-success">Join event</a>
                 {{/unless}}
 
                 {{#if eventJoined}}
@@ -54,12 +57,11 @@
                 {{/if}}
                 {{/unless}}
 
-
             </div>
 
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
 
             <figure id="myMap"></figure>
 

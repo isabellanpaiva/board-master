@@ -15,7 +15,7 @@ router.get("/", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
     Event
         .find()
         .then((events) => {
-            res.render('events/events-list', { events, isLogged: req.session.currentUser })
+            res.render('events/events-list', { events })
         })
         .catch(err => next(err))
 
@@ -27,7 +27,7 @@ router.get("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN'
 
     gamesAPI
         .getGameDetails(game_id)
-        .then(response => res.render('events/event-create', { game: response.data.games[0], isLogged: req.session.currentUser }))
+        .then(response => res.render('events/event-create', { game: response.data.games[0] }))
         .catch(err => next(Error))
 
 })
@@ -36,7 +36,7 @@ router.post("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN
 
     const { game_id, game_name } = req.params
     const { title, description, date, address } = req.body
-    const organizer = req.session.currentUser._id
+    const { _id: organizer } = req.session.currentUser
 
 
     // geocodingApi
@@ -60,8 +60,7 @@ router.get('/details/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), async 
 
             Event
                 .findById(event_id)
-                .populate('organizer')
-                .populate('attendees')
+                .populate('organizer attendees')
 
         const eventJoined = event.attendees.some(attendee => attendee._id.equals(user_id))
         const isEventOwner = event.organizer._id.equals(user_id) || req.session.currentUser.role === 'ADMIN'
@@ -69,7 +68,7 @@ router.get('/details/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), async 
         event.formattedDate = formatDate(event.date)
         event.formattedTime = formatTime(event.date)
 
-        res.render('events/event-details', { event, isLogged: req.session.currentUser, eventJoined, isEventOwner })
+        res.render('events/event-details', { event, eventJoined, isEventOwner })
 
     } catch (err) {
         next(err)
@@ -81,7 +80,7 @@ router.get('/details/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), async 
 router.get('/joinEvent/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { event_id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
 
     Event
         .updateOne({ _id: event_id }, { $push: { attendees: user_id } })
@@ -93,7 +92,7 @@ router.get('/joinEvent/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), (req
 router.get("/withdrawEvent/:event_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const { event_id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
 
     Event
         .updateOne({ _id: event_id }, { $pull: { attendees: user_id } })
@@ -105,7 +104,7 @@ router.get("/withdrawEvent/:event_id", isLoggedIn, checkRoles('USER', 'ADMIN'), 
 router.get('/edit/:event_id', isLoggedIn, (req, res, next) => {
 
     const { event_id } = req.params
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
 
     Event
 
@@ -115,7 +114,7 @@ router.get('/edit/:event_id', isLoggedIn, (req, res, next) => {
             const isEventOwner = event.organizer._id.equals(user_id) || req.session.currentUser.role === 'ADMIN'
 
             if (isEventOwner) {
-                res.render('events/event-edit', { event, isLogged: req.session.currentUser })
+                res.render('events/event-edit', { event })
             } else {
                 res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
             }
@@ -146,7 +145,7 @@ router.post('/edit/:event_id', isLoggedIn, (req, res, next) => {
 router.get('/delete/:event_id', isLoggedIn, (req, res, next) => {
 
     const { event_id } = req.params;
-    const user_id = req.session.currentUser._id
+    const { _id: user_id } = req.session.currentUser
 
     Event
         .findById(event_id)

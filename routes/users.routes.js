@@ -13,23 +13,16 @@ router.get("/profile/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, r
     const { user_id } = req.params
 
     User
-
         .findById(user_id)
-
         .then(async (user) => {
 
             //show my friends
-
             const showFriend = user.friends.map(async (friendId) => {
-
                 const friend = await
 
                     User
-
                         .findById(friendId)
-
                 return friend
-
             })
 
             const friendDetails = await Promise.all(showFriend)
@@ -54,12 +47,11 @@ router.get("/profile/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, r
                 .find({
                     $or: [{ organizer: user_id }, { attendees: user_id }]
                 })
-                .populate('organizer')
-                .populate('attendees')
+                .populate('organizer attendees')
 
             // render view 
 
-            res.render("users/user-profile", { user, isLogged: req.session.currentUser, friendDetails, gameDetails, eventsDetails })
+            res.render("users/user-profile", { user, friendDetails, gameDetails, eventsDetails })
 
         })
 
@@ -81,7 +73,7 @@ router.get("/edit/:user_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res,
             const ownerRole = req.session.currentUser.role === 'USER' && req.session.currentUser._id.toString() === user_id
 
             if (adminRole || ownerRole) {
-                res.render("users/user-edit", { user, isLogged: req.session.currentUser })
+                res.render("users/user-edit", { user })
             } else {
                 res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
             }
@@ -130,8 +122,7 @@ router.post('/delete/:user_id', isLoggedIn, checkRoles('USER', 'ADMIN'), (req, r
             const ownerRole = req.session.currentUser.role === 'USER' && req.session.currentUser._id.toString() === user_id
 
             if (adminRole || ownerRole) {
-                req.session.currentUser = null;
-                res.redirect('/');
+                req.session.destroy(() => res.redirect('/'))
             } else {
                 res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
             }

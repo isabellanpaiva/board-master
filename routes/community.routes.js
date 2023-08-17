@@ -7,49 +7,18 @@ const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-gu
 const uploaderMiddleware = require('../middlewares/uploader.midleware')
 const { trusted } = require('mongoose')
 
-// ----------- [REVIEW: using friends model property instead of new isFriend] ----------
-
-// router.get("/", isLoggedIn, (req, res, next) => {
-
-//     const currentUser = req.session.currentUser._id
-
-//     User
-
-//         .find({ _id: { $ne: currentUser } })
-
-//         .then(user => {
-
-//             let isFriend = (currentUser, friend_id) => {
-//                 if (user.friends.includes(friend_id)) {
-//                     return isFriend = true
-//                 } else {
-//                     return isFriend = false
-//                 }
-//             }
-//         })
-
-//         .then(res.render("community/community-list", { user, isLogged: req.session.currentUser, isFriend }))
-//         .catch(err => next(err))
-// })
-
 //comunity list 
 
 router.get("/", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
 
     const currentUser = req.session.currentUser._id
 
-    const isFriend = (currentUser, friend_id) => {
-        if (currentUser.friends.includes(friend_id)) {
-            return true
-        } else {
-            return false
-        }
-    }
+    // utils
+    const isFriend = (currentUser, friend_id) => currentUser.friends.includes(friend_id)
 
     User
 
         .find({ _id: { $ne: currentUser } })
-
         .then(async (users) => {
 
             try {
@@ -69,28 +38,6 @@ router.get("/", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
         .catch(err => next(err))
 })
 
-// ----------- [REVIEW] ----------
-
-
-//community profiles
-
-// router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), async (req, res, next) => {
-
-//     try {
-//         const { friend_id } = req.params
-
-//         const currentUser = req.session.currentUser
-
-//         const user = await
-
-//             User.findById(friend_id);
-
-//         res.render("community/users-profile", { user, isLogged: currentUser })
-//     } catch (err) {
-//         next(err);
-//     }
-// });
-
 //friends profiles
 
 router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res, next) => {
@@ -106,15 +53,8 @@ router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req,
             //show friends of friends
 
             const showFriend = user.friends.map(async (friendId) => {
-
-                const friend = await
-
-                    User
-
-                        .findById(friendId)
-
+                const friend = await User.findById(friendId)
                 return friend
-
             })
 
             const friendDetails = await Promise.all(showFriend)
@@ -139,8 +79,7 @@ router.get("/details/:friend_id", isLoggedIn, checkRoles('USER', 'ADMIN'), (req,
                 .find({
                     $or: [{ organizer: friend_id }, { attendees: friend_id }]
                 })
-                .populate('organizer')
-                .populate('attendees')
+                .populate('organizer attendees')
 
             // render view 
 

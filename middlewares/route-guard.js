@@ -14,6 +14,7 @@ const isLoggedOut = (req, res, next) => {
     }
 }
 
+// const checkRoles = (allowOwner, ...admittedRoles) => (req, res, next) => {
 const checkRoles = (...admittedRoles) => (req, res, next) => {
 
     const { role } = req.session.currentUser
@@ -24,6 +25,8 @@ const checkRoles = (...admittedRoles) => (req, res, next) => {
         res.redirect('/login?err=Access forbiden. You do not have the role to access this page')
     }
 }
+
+
 
 
 module.exports = {

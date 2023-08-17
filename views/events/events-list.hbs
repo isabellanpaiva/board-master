@@ -1,33 +1,42 @@
-<div class="container">
+<h2 id="pageTitle"> Community Events </h2>
 
-    <h2>Events list</h2>
-    <hr>
-    <div class="row">
-        {{#each events}}
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <h3>{{title}}</h3>
-                <h4>{{gameName}}</h4>
-                <div class="card-body">
-                    <h5 class="card-title">{{address}}</h5>
+<div class="row" id="eventsSection">
 
-                    {{!-- {{#if isLogged}} --}}
+    {{#each events}}
 
-                    <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
+    <div class="col-md-6 mt-4 mb-5" id="eventInformation">
 
-                    {{!-- {{/if}} --}}
+        <div class="card text-center" id="eventCard">
 
-                    {{!-- {{/if}} --}}
+            <div class="card-body" id="eventBody">
 
+                <p class="card-text"> <strong>{{title}}</strong></p>
 
-                </div>
+                <p class="card-text"> <strong> Game: </strong>{{gameName}}</p>
+
+                <p class="card-text"> <strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
+
+                <p class="card-text"> <strong>Address:</strong> {{address}}</p>
+
+                <a class=" btn btn-outline-dark" href="/events/details/{{id}}">Event details</a>
+
+                {{#if isLogged}}
+
+                <a class=" btn btn-outline-dark" href="/events/details/{{id}}">Event details</a>
+
+                {{/if}}
+
             </div>
-        </div>
-        {{/each}}
 
-        <figure id="myMap"></figure>
+        </div>
 
     </div>
+
+    {{/each}}
+
+    <figure id="myMap"></figure>
+
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

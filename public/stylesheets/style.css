@@ -10,9 +10,9 @@ body {
   margin-top: 120px;
   margin-bottom: 100px;
   /* background-color: gray */
-  /* background-image: url(../images/games-background.jpeg);
+  /* background-image: url(../images/gamesbar2-background.jpeg);
   background-size: cover;
-  background-repeat: no-repeat; */
+  background-attachment: fixed; */
 }
 
 img {
@@ -95,6 +95,7 @@ h2 {
 
 #pageTitle {
   text-align: left;
+  /* color: white; */
 }
 
 #form-text {
@@ -106,7 +107,9 @@ h2 {
 /* personal information */
 
 #userSection {
-  background-color: white
+  background-color: white;
+  /* opacity: 0.5;
+  z-index: -1; */
 }
 
 #userInformation {
@@ -114,9 +117,6 @@ h2 {
   flex-direction: row;
 }
 
-#userCard {}
-
-/* how to make an circular avatar picture?  */
 #userAvatar {
   width: 15em;
   height: 15em;
@@ -134,8 +134,6 @@ h2 {
   font-size: 1.5em;
 }
 
-/* how to put buttons right next to each other?  */
-
 #buttonsBoxes {
   display: flex;
   flex-direction: row;
@@ -145,10 +143,6 @@ h2 {
 /* games information  */
 
 /* friends information  */
-
-#friendSection {}
-
-#userInformation {}
 
 #friendCard {
   border: none;
@@ -165,17 +159,13 @@ h2 {
   border: none;
 }
 
-#friendBody {}
-
 /* events information  */
 
 #eventCard {
-  border: none;
+  /* border: none; */
 }
 
 /* ----------- [GAMES] -----------  */
-
-/* ----------- [games categories] -----------  */
 
 #categoryLabels {
   display: flex;
@@ -188,12 +178,18 @@ h2 {
   width: 10rem;
 }
 
+#gameLinks {
+  text-decoration: none;
+  color: white;
+}
+
 #gamesSection {}
 
 #gamesInformation {}
 
 #gameCard {
-  border: none
+  background-color: white;
+  border: none;
 }
 
 #gameHeader {
@@ -212,11 +208,6 @@ h2 {
 #gameBody {}
 
 /* ----------- [COMUNITY] -----------  */
-
-#gameLinks {
-  text-decoration: none;
-  color: white;
-}
 
 #myMap {
   height: 600px;

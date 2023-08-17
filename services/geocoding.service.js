@@ -2,16 +2,16 @@ const axios = require('axios')
 
 class geocoding {
 
-    // constructor() {
+    constructor() {
 
-    //     // this.axiosApp = axios.create({
-    //     //     baseURL: 'https://maps.googleapis.com/maps/api/geocode'
-    //     // })
-    // }
+        this.axiosApp = axios.create({
+            baseURL: 'https://maps.googleapis.com/maps/api/geocode'
+        })
+    }
 
     getCoordenates(address) {
 
-        return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBPQd2uaw4aqmx9lrJE7pESbjI9eBxf4sY`)
+        return this.axiosApp.get(`/json?address=${address}&key=AIzaSyBPQd2uaw4aqmx9lrJE7pESbjI9eBxf4sY`)
     }
 }
 

@@ -2,9 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Event = require('./../models/Event.model')
 
-router.get("/places/:event_id", (req, res, next) => {
+router.get("/events", (req, res, next) => {
     Event
-        .findById()
+        .find()
+        .then(events => res.json(events))
+        .catch(err => next(err))
+
 })
 
 module.exports = router

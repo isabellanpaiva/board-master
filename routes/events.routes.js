@@ -39,17 +39,43 @@ router.post("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN
     const { _id: organizer } = req.session.currentUser
 
 
-    // geocodingApi
-    //     .getCoordenates(address)
-    //     .then(response => res.send(response))
-    //     .catch(err => next(err))
-
-    Event
-        .create({ title, gameId: game_id, gameName: game_name, description, date, address, organizer })
-        .then(() => res.redirect('/events/'))
+    geocodingApi
+        .getCoordenates(address)
+        .then(response => {
+            const location = {
+                type: 'Point',
+                coordenates: [response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]
+            }
+            return location
+        })
+        .then(location => Event
+            .create({ title, gameId: game_id, gameName: game_name, description, date, address, location, organizer })
+            .then(() => res.redirect('/events/')))
         .catch(err => next(err))
-
 })
+
+
+
+
+
+
+
+
+
+
+//     console.log(response.data.results[0].geometry.location))
+// .catch(err => next(err))
+
+// location: {
+//     coordenates: {
+//         type: [Number]
+//     }
+// }
+
+
+
+
+
 
 router.get('/details/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), async (req, res, next) => {
 

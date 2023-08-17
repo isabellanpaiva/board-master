@@ -192,8 +192,9 @@ h2 {
   color: white;
 }
 
-#eventMap {
+#myMap {
   height: 800px;
+  background-color: red;
 }
 
 /* [ FOR REFERENCE]

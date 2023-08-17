@@ -1,20 +1,44 @@
-const initialCoords = { lat: 40.4460495560349, lng: -3.6759638264748986 }
-let eventMap
 
-
-function init() {
-    renderMap()
-    // getPlacesData()
-}
-
+const ironhackCoords = { lat: 40.392521370648154, lng: - 3.6989879718518366 }
 
 function renderMap() {
 
-    eventMap = new google.maps.Map(
-        document.querySelector('#eventMap'),
-        { zoom: 15, center: initialCoords, }
+
+    const myMap = new google.maps.Map(
+        document.querySelector('#myMap'),
+        {
+            zoom: 15,
+            center: ironhackCoords,
+        }
     )
+
+    new google.maps.Marker({
+        map: myMap,
+        position: ironhackCoords
+    })
 }
+
+
+
+
+// const initialCoords = { lat: 40.4460495560349, lng: -3.6759638264748986 }
+// let eventMap
+// console.log("llego al mapa")
+
+
+// function init() {
+//     renderMap()
+//     getPlacesData()
+// }
+
+
+// function renderMap() {
+
+//     eventMap = new google.maps.Map(
+//         document.querySelector('#myMap'),
+//         { zoom: 15, center: initialCoords, }
+//     )
+// }
 
 // function getPlacesData() {
 
@@ -36,7 +60,7 @@ function renderMap() {
 
 //         new google.maps.Marker({
 //             position,
-//             map: myMap,
+//             map: eventMap,
 //             title: elm.name
 //         })
 //     })

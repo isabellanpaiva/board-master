@@ -4,21 +4,19 @@
 
     {{#each games}}
 
-    <div class=" col-3 mt-5 mb-5" id="gamesInformation">
+    <div class="col-3 mb-5" id="gamesInformation">
 
-        <div class="card mb-5" id="gameCard">
+        <div class="card" id="gameCard">
 
-            <div class="card-header" id="gamesCardHeader">
+            <div class="card-header" id="gameHeader">
 
                 <img src="{{image_url}}" class="card-img-top " alt="{{name}}" id="gameCover">
 
             </div>
 
-            <div class="card-body" id="gamesCardBody">
+            <div class="card-body" id="gameBody">
 
                 <h5 class="card-title">{{name}}</h5>
-
-                <br>
 
                 <a href="/games/details/{{id}}" class=" btn btn-dark">Game details</a>
 

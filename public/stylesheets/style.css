@@ -234,6 +234,10 @@ h2 {
   background-color: red;
 }
 
+#map {
+  height: 400px;
+}
+
 /* [ FOR REFERENCE]
 
 * {

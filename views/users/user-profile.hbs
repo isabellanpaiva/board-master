@@ -1,140 +1,147 @@
+<h2 id="pageTitle">Welcome, {{user.username}}!</h2>
+
 <div class="row" id="userSection">
 
-    <h2 id="pageTitle">Welcome, {{user.username}}!</h2>
+    <div class="col-md-6 mt-5" id="userInformation">
 
-    <div class="col-md-6" id="userInformation">
+        <div class="card-header" id="userHeader">
 
-        <img src="{{user.profilePicture}}" class="img-fluid rounded-start" alt="profilePicture" id="userCard">
+            <img src="{{user.profilePicture}}" class="img-fluid rounded-circle" alt="profilePicture" id="userAvatar">
+
+        </div>
+
+        <div class="card-body" id="userBody">
+
+            <p class="card-text"> <strong>Username:</strong> {{user.username}}</p>
+
+            <p class="card-text"> <strong> E-mail:</strong> {{user.email}}</p>
+
+            <p class="card-text"> <strong>Description:</strong> {{user.description}}</p>
+
+            <div id="buttonsBoxes">
+
+                <form action="/users/edit/{{user.id}}" method="POST">
+                    <a class="btn btn-outline-dark" role="button" href="/users/edit/{{user.id}}">Edit profile</a>
+                </form>
+
+                <form action="/users/delete/{{user.id}}" method="POST">
+                    <input class="btn btn-outline-danger" type="submit" role="button" value="Delete profile">
+                </form>
+
+            </div>
+
+
+        </div>
 
     </div>
-
-    <p class="card-text"> <strong>Username:</strong> {{user.username}}</p>
-
-    <p class="card-text"> <strong> E-mail:</strong> {{user.email}}</p>
-
-    <p class="card-text"> <strong>Description:</strong> {{user.description}}</p>
-
-    <form action="/users/edit/{{user.id}}" method="POST">
-        <a class="btn btn-dark" href="/users/edit/{{user.id}}" role="button">Edit profile</a>
-    </form>
-
-    <form action="/users/delete/{{user.id}}" method="POST">
-        <input class="btn btn-dark mt-3" type="submit" role="button" value="Delete profile">
-    </form>
 
 </div>
 
-{{!-- <div="container"> --}}
 
-    <h2 id="pageTitle"> My games </h2>
+<h2 id="pageTitle"> My games </h2>
 
-    <div class="row mt-5 mb-5" id="#gamesSection">
+<div class="row mt-5 mb-5" id="#gamesSection">
 
-        {{#each gameDetails}}
+    {{#each gameDetails}}
 
-        <div class=" col-3 mt-5 mb-5" id="gamesInformation">
+    <div class="col-3 mb-5" id="gamesInformation">
 
-            <div class="card mt-5 mb-5" id="gameCard">
+        <div class="card text-center" id="gameCard">
 
-                <div class="card-header" id="gamesCardHeader">
+            <div class="card-header pt-5" id="gameHeader">
 
-                    <img src="{{this.image_url}}" class="card-img-top" alt="{{this.name}}" id="gameCover">
+                <img src="{{this.image_url}}" class="card-img-top" alt="{{this.name}}" id="gameCover">
 
-                </div>
+            </div>
 
-                <div class="card-body" id="gamesCardBody">
+            <div class="card-body" id="gameBody">
 
-                    <h5 class="card-title">{{this.name}}</h5>
+                <h5 class="card-title mb-5">{{this.name}}</h5>
 
-                    <br>
+                <a class="btn btn-outline-dark mb-3" href="/games/details/{{this.id}}">Game details</a>
 
-                    <a href="/games/details/{{this.id}}" class=" btn btn-dark">Game details</a>
+                <a class="btn btn-outline-success mb-3" href="/events/create/{{this.id}}/{{this.name}}"
+                    role="button">New
+                    Event</a>
 
-                    <br>
-
-                    <a href="/games/delete-game/{{this.id}}" class="btn btn-dark">Remove from favorites</a>
-
-                    <br>
-
-                    <a class="btn btn-outline-info" href="/events/create/{{this.id}}/{{this.name}}" role="button">New
-                        Event</a>
-
-                </div>
+                <a class="btn btn-outline-dark" href="/games/delete-game/{{this.id}}">Remove game from favorites</a>
 
             </div>
 
         </div>
 
-        {{/each}}
-
     </div>
 
-    {{!-- </div> --}}
+    {{/each}}
 
-    <div class="row" id="friendsInformation">
+</div>
 
-        <h2 id="pageTitle"> My friends </h2>
+<h2 id="pageTitle"> My friends </h2>
 
-        {{#each friendDetails}}
+<div class="row" id="friendSection">
 
-        <div class="col-3" id="friendCard">
+    {{#each friendDetails}}
 
-            <div class="card">
+    <div class="col-md-3 mt-5 mb-5" id="friendInformation">
 
-                <img src="{{this.profilePicture}}">
+        <div class="card text-center" id="friendCard">
 
-                <div class="card-body">
+            <div class="card-header" id="friendHeader">
 
-                    {{this.username}}
+                <img src="{{this.profilePicture}}" class="img-fluid rounded-circle" alt="friendPicture"
+                    id="friendAvatar">
 
-                    <br>
+            </div>
 
-                    <br>
+            <div class="card-body" id="friendBody">
 
-                    <a class="btn btn-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+                <p class="card-text"> <strong>{{this.username}}</strong></p>
 
-                    <a class="btn btn-dark" href="/community/remove-friend/{{id}}" role=" button">Remove friend</a>
+                <a class="btn btn-outline-dark" href="/community/details/{{_id}}" role="button">See profile</a>
 
-                </div>
+                <br> <br>
+
+                <a class="btn btn-outline-danger" href="/community/remove-friend/{{id}}" role=" button">Remove
+                    friend</a>
 
             </div>
 
         </div>
 
-        {{/each}}
-
     </div>
 
-    <div class="row" id="eventsInformation">
+    {{/each}}
 
-        <h2 id="pageTitle"> My events </h2>
+</div>
 
-        {{#each eventsDetails}}
+<div class="row" id="eventsInformation">
 
-        <div class="col-3" id="eventCard">
+    <h2 id="pageTitle"> My events </h2>
 
-            <div class="card">
+    {{#each eventsDetails}}
 
-                <div class="card-body">
+    <div class="col-3" id="eventCard">
 
-                    <p class="card-text">Event: {{this.title}}</p>
+        <div class="card">
 
-                    <p class="card-text">Game: {{this.gameName}}</p>
+            <div class="card-body">
 
-                    <p class="card-text">Description: {{this.description}}</p>
+                <p class="card-text">Event: {{this.title}}</p>
 
-                    <p class="card-text"> Location: {{event.location}}</p>
+                <p class="card-text">Game: {{this.gameName}}</p>
 
-                    <p class="card-text"> Date: {{this.formattedDate}} {{this.formattedTime}}</p>
+                <p class="card-text"> Date: {{this.formattedDate}} {{this.formattedTime}}</p>
 
-                    <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
+                <p class="card-text"> Location: {{event.location}}</p>
 
-                </div>
+                <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
 
             </div>
 
         </div>
 
-        {{/each}}
-
     </div>
+
+    {{/each}}
+
+</div>

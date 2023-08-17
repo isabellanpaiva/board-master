@@ -9,6 +9,7 @@ body {
   font-family: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin-top: 120px;
   margin-bottom: 100px;
+  /* background-color: #1fa3f0; */
   /* background-image: url(../images/games-background.jpeg);
   background-size: cover;
   background-repeat: no-repeat; */
@@ -102,31 +103,71 @@ h2 {
 
 /* ----------- [USER] -----------  */
 
+/* personal information */
+
+#userSection {}
+
 #userInformation {
-  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
 }
 
-#userCard-avatar {
-  width: 20em;
-  height: 20em;
+#userCard {
+  border: none;
+}
+
+/* how to make an circular avatar picture?  */
+#userAvatar {
+  width: 15em;
+  height: 15em;
   object-fit: cover;
-  border-radius: 50%;
 }
 
-.card-header {
+#userHeader {
   background: none;
-  overflow: hidden;
+  border: none;
   width: 20em;
   height: 20em;
 }
 
-#friendsInformation {
-  margin-bottom: 50px;
+#userBody {
+  font-size: 1.5em;
 }
+
+/* how to put buttons right next to each other?  */
+
+#buttonsBoxes {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* games information  */
+
+/* friends information  */
+
+#friendSection {}
+
+#userInformation {}
 
 #friendCard {
   border: none;
 }
+
+#friendAvatar {
+  width: 10em;
+  height: 10em;
+  object-fit: cover;
+}
+
+#friendHeader {
+  background: none;
+  border: none;
+}
+
+#friendBody {}
+
+/* events information  */
 
 /* ----------- [GAMES] -----------  */
 
@@ -145,45 +186,28 @@ h2 {
 
 /* ----------- [games list] -----------  */
 
-#gamesSection {
-  justify-content: center
-}
+#gamesSection {}
 
-#gamesInformation {
-  height: 25em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center
-}
+#gamesInformation {}
 
 #gameCard {
+  border: none
+}
+
+#gameHeader {
+  background: none;
   border: none;
-  width: 20rem;
+  height: 20em;
+  /* background-color: black; */
 }
 
 #gameCover {
-  height: 85%;
-  width: 85%;
+  height: 90%;
+  width: 90%;
+  object-fit: contain;
 }
 
-#gamesCardBody {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#gamesCardHeader {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* div .card-body {
-  justify-content: center;
-} */
+#gameBody {}
 
 /* ----------- [COMUNITY] -----------  */
 

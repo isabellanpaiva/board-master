@@ -1,6 +1,6 @@
 <h2 id="pageTitle">Welcome, {{user.username}}!</h2>
 
-<div class="row" id="userSection">
+<div class="row mt-5 mb-5 rounded" id="userSection">
 
     <div class="col-md-6 mt-5" id="userInformation">
 
@@ -30,7 +30,6 @@
 
             </div>
 
-
         </div>
 
     </div>
@@ -40,11 +39,11 @@
 
 <h2 id="pageTitle"> My games </h2>
 
-<div class="row mt-5 mb-5" id="#gamesSection">
+<div class="row" id="#gamesSection">
 
     {{#each gameDetails}}
 
-    <div class="col-3 mb-5" id="gamesInformation">
+    <div class="col-3 mb-5 mt-4" id="gamesInformation">
 
         <div class="card text-center" id="gameCard">
 
@@ -58,13 +57,13 @@
 
                 <h5 class="card-title mb-5">{{this.name}}</h5>
 
-                <a class="btn btn-outline-dark mb-3" href="/games/details/{{this.id}}">Game details</a>
-
-                <a class="btn btn-outline-success mb-3" href="/events/create/{{this.id}}/{{this.name}}"
+                <a class="btn btn-outline-success mb-2" href="/events/create/{{this.id}}/{{this.name}}"
                     role="button">New
                     Event</a>
 
-                <a class="btn btn-outline-dark" href="/games/delete-game/{{this.id}}">Remove game from favorites</a>
+                <a class="btn btn-outline-dark mb-2" href="/games/details/{{this.id}}">Game details</a>
+
+                <a class="btn btn-outline-danger" href="/games/delete-game/{{this.id}}">Remove favorite</a>
 
             </div>
 
@@ -82,11 +81,11 @@
 
     {{#each friendDetails}}
 
-    <div class="col-md-3 mt-5 mb-5" id="friendInformation">
+    <div class="col-md-3 mt-4 mb-5" id="friendInformation">
 
         <div class="card text-center" id="friendCard">
 
-            <div class="card-header" id="friendHeader">
+            <div class="card-header mt-2" id="friendHeader">
 
                 <img src="{{this.profilePicture}}" class="img-fluid rounded-circle" alt="friendPicture"
                     id="friendAvatar">
@@ -114,27 +113,29 @@
 
 </div>
 
-<div class="row" id="eventsInformation">
+<h2 id="pageTitle"> My events </h2>
 
-    <h2 id="pageTitle"> My events </h2>
+<div class="row" id="eventsSection">
 
     {{#each eventsDetails}}
 
-    <div class="col-3" id="eventCard">
+    <div class="col-md-6 mt-4 mb-5" id="eventInformation">
 
-        <div class="card">
+        <div class="card text-center" id="eventCard">
 
-            <div class="card-body">
+            <div class="card-body" id="eventBody">
 
-                <p class="card-text">Event: {{this.title}}</p>
+                <p class="card-text"> <strong>{{this.title}}</strong></p>
 
-                <p class="card-text">Game: {{this.gameName}}</p>
+                <p class="card-text"> <strong> Game: </strong>{{this.gameName}}</p>
 
-                <p class="card-text"> Date: {{this.formattedDate}} {{this.formattedTime}}</p>
+                <p class="card-text"> </strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
 
-                <p class="card-text"> Location: {{event.location}}</p>
+                <p class="card-text"> </strong>Location:</strong> {{event.location}}</p>
 
-                <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
+                <a class=" btn btn-outline-dark" href="/events/details/{{id}}">Event details</a>
+
+                <a class=" btn btn-outline-danger" href="/events/withdrawEvent/{{event.id}}">Withdraw</a>
 
             </div>
 

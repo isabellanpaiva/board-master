@@ -1,28 +1,22 @@
-<h2 id="pageTitle">Main info</h2>
+<h2 id="pageTitle">Profile of {{user.username}}!</h2>
 
-<div class="card mt-5 ms-5" style="max-width: 2000px;">
+<div class="row mt-5 mb-5 rounded" id="userSection">
 
-    <div class="row">
+    <div class="col-md-6 mt-5" id="userInformation">
 
-        <div class="col-md-4">
-            <img src="{{user.profilePicture}}" class="img-fluid rounded-start" alt="profilePicture">
+        <div class="card-header" id="userHeader">
+            <img src="{{user.profilePicture}}" class="img-fluid rounded-circle" alt="profilePicture" id="userAvatar">
         </div>
 
-        <div class="col-md-8 mt-3">
+        <div class="card-body" id="userBody">
 
-            <div class="card-body">
+            <p class="card-text"> <strong>Username:</strong> {{user.username}}</p>
 
-                <p class="card-text">Username: {{user.username}}</p>
+            <p class="card-text"> <strong> E-mail:</strong> {{user.email}}</p>
 
-                <br>
+            <p class="card-text"> <strong>Description:</strong> {{user.description}}</p>
 
-                <p class="card-text">E-mail: {{user.email}}</p>
-
-                <br>
-
-                <p class="card-text"> Description: {{user.description}}</p>
-
-                <br>
+            <div id="buttonsBoxes">
 
                 <form action="/community/add-friend/{{user.id}}" method="POST">
                     <a class="btn btn-outline-dark" href="/community/add-friend/{{id}}" role="button">Add as a
@@ -39,36 +33,25 @@
 
 <h2 id="pageTitle">Favorite games of {{user.username}}</h2>
 
-<div class="row mt-5 mb-5" id="#gamesSection">
+<div class="row" id="#gamesSection">
 
     {{#each gameDetails}}
 
-    <div class=" col-3 mt-5 mb-5" id="gamesInformation">
+    <div class="col-3 mb-5 mt-4" id="gamesInformation">
 
-        <div class="card mt-5 mb-5" id="gameCard">
+        <div class="card text-center" id="gameCard">
 
-            <div class="card-header" id="gamesCardHeader">
+            <div class="card-header pt-5" id="gameHeader">
 
                 <img src="{{this.image_url}}" class="card-img-top" alt="{{this.name}}" id="gameCover">
 
             </div>
 
-            <div class="card-body" id="gamesCardBody">
+            <div class="card-body" id="gameBody">
 
-                <h5 class="card-title">{{this.name}}</h5>
+                <h5 class="card-title mb-5">{{this.name}}</h5>
 
-                <br>
-
-                <a href="/games/details/{{this.id}}" class=" btn btn-dark">Game details</a>
-
-                <br>
-
-                <a href="/games/delete-game/{{this.id}}" class="btn btn-outline-dark">Remove from favorites</a>
-
-                <br>
-
-                <a class="btn btn-outline-info" href="/events/create/{{this.id}}/{{this.name}}" role="button">New
-                    Event</a>
+                <a class=" btn btn-outline-dark" href="/games/details/{{this.id}}">Game details</a>
 
             </div>
 
@@ -80,29 +63,28 @@
 
 </div>
 
-<div class="row" id="friendsInformation">
+<h2 id="pageTitle"> Friends of {{user.username}}</h2>
 
-    <h2 id="pageTitle"> Friends of {{user.username}}</h2>
+<div class="row" id="friendSection">
 
     {{#each friendDetails}}
 
-    <div class="col-4" id="friendCard">
+    <div class="col-md-3 mt-4 mb-5" id="friendInformation">
 
-        <div class="card">
+        <div class="card text-center" id="friendCard">
 
-            <img src="{{this.profilePicture}}">
+            <div class="card-header mt-2" id="friendHeader">
 
-            <div class="card-body">
+                <img src="{{this.profilePicture}}" class="img-fluid rounded-circle" alt="friendPicture"
+                    id="friendAvatar">
 
-                {{this.username}}
+            </div>
 
-                <br>
+            <div class="card-body" id="friendBody">
 
-                <br>
+                <p class="card-text"> <strong>{{this.username}}</strong></p>
 
                 <a class="btn btn-outline-dark" href="/community/details/{{_id}}" role="button">See profile</a>
-
-                <a class="btn btn-outline-dark" href="/community/remove-friend/{{id}}" role=" button">Remove friend</a>
 
             </div>
 
@@ -114,27 +96,25 @@
 
 </div>
 
-<div class="row" id="eventsInformation">
+<h2 id="pageTitle"> Events that {{user.username}} is attending</h2>
 
-    <h2 id="pageTitle"> Events that {{user.username}} is attending</h2>
+<div class="row" id="eventsSection">
 
     {{#each eventsDetails}}
 
-    <div class="col-4" id="eventCard">
+    <div class="col-md-6 mt-4 mb-5" id="eventInformation">
 
-        <div class="card">
+        <div class="card text-center" id="eventCard">
 
-            <div class="card-body">
+            <div class="card-body" id="eventBody">
 
-                <p class="card-text">Event: {{this.title}}</p>
+                <p class="card-text"> <strong>{{this.title}}</strong></p>
 
-                <p class="card-text">Game: {{this.gameName}}</p>
+                <p class="card-text"> <strong> Game: </strong>{{this.gameName}}</p>
 
-                <p class="card-text">Description: {{this.description}}</p>
+                <p class="card-text"> </strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
 
-                <p class="card-text"> Location: {{event.location}}</p>
-
-                <p class="card-text"> Date: {{this.formattedDate}} {{this.formattedTime}}</p>
+                <p class="card-text"> </strong>Location:</strong> {{event.location}}</p>
 
                 <a href="/events/details/{{id}}" class=" btn btn-outline-success">Event details</a>
 

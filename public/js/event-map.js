@@ -18,10 +18,11 @@ function renderMap() {
 }
 
 function getPlacesData() {
-
     axios
         .get('/api/events')
-        .then(response => printMarkers(response.data))
+        .then(response => {
+            printMarkers(response.data)
+        })
         .catch(err => console.log(err))
 }
 
@@ -36,7 +37,7 @@ function printMarkers(events) {
 
         new google.maps.Marker({
             position,
-            map: myMap,
+            map: eventMap,
             title: elm.title
         })
     })

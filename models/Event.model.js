@@ -60,6 +60,8 @@ const eventSchema = new Schema(
 
 )
 
+eventSchema.index({ location: '2dsphere' })
+
 const Event = model("Event", eventSchema)
 
 module.exports = Event

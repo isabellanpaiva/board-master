@@ -1,12 +1,12 @@
 <h2 id="pageTitle"> Details of {{event.title}}</h2>
 
-<div class="card mt-5" style="max-width: 2500px;">
+<div class="card mt-5" style="max-width: 2500px;" id="eventDetails">
 
     <div class="row">
 
         <div class="col-md-6 mt-3">
 
-            <div class="card-body">
+            <div class="card-body ms-3 mt-3" id="eventBody">
 
                 <p class="card-text"> <strong>{{event.title}}</strong></p>
 
@@ -41,7 +41,7 @@
                 </ul>
 
                 {{#if isEventOwner}}
-                <a href="/events/edit/{{event.id}}" class=" btn btn-warning">Edit event</a>
+                <a href="/events/edit/{{event.id}}" class=" btn btn-light">Edit event</a>
                 <a href="/events/delete/{{event.id}}" class=" btn btn-danger">Delete event</a>
                 {{/if}}
 

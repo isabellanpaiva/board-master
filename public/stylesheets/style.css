@@ -9,10 +9,10 @@ body {
   font-family: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin-top: 120px;
   margin-bottom: 100px;
-  background-color: wheat
-    /* background-image: url(../images/pieces-background.jpeg);
+  /* background-color: wheat */
+  background-image: url(../images/gamesbar5-background.webp);
   background-size: cover;
-  background-attachment: fixed; */
+  background-attachment: fixed;
 }
 
 img {
@@ -45,7 +45,7 @@ div.main-information {
   margin-top: 20vh;
   padding-top: 5vh;
   padding-bottom: 5vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 15px;
 }
 
@@ -117,7 +117,7 @@ h2 {
 /* personal information */
 
 #userSection {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
 }
 
@@ -155,7 +155,7 @@ h2 {
 
 #friendCard {
   border: none;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
 }
 
@@ -197,26 +197,19 @@ h2 {
   color: white;
 }
 
-#gamesSection {
-  margin
-}
+#gamesSection {}
 
-#gamesInformation {
-  /* color: white */
-}
+#gamesInformation {}
 
 #gameCard {
-  background: none;
-  border: none;
-  /* background-color: rgba(255, 255, 255, 0.9); */
+  /* background-color: rgba(0, 0, 0, 0.9); */
+  /* color: white; */
   background-color: white;
 }
 
 #gameHeader {
-  background: none;
-  border: none;
+  border: 0;
   height: 20em;
-  /* background-color: black; */
 }
 
 #gameCover {
@@ -227,12 +220,31 @@ h2 {
 
 #gameBody {}
 
+#gameDetails {
+  max-width: 150vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+}
+
+#gameImageDetailed {
+  padding-top: 4vh;
+}
+
 /* ----------- [COMUNITY] -----------  */
+
+/* ----------- [EVENTS] -----------  */
+
+#eventDetails {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+}
+
+#eventBody {}
 
 #myMap {
   height: 600px;
-  background-color: red;
 }
+
 
 /* [ FOR REFERENCE]
 

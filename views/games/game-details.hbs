@@ -1,8 +1,8 @@
 <h2 id="pageTitle">Game details</h2>
 
-<div class="row me-2 mt-5" id="gameDetails">
+<div class="row me-2 mt-5 mb-5" id="gameDetails">
 
-    <div class="col-5" id="gameImage">
+    <div class="col-6 mb-5 mt-5 text-center" id="gameImageDetailed">
 
         <img src="{{game.image_url}}" alt="{{game.name}}">
 
@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="col-6 mt-5" id="gameInfo">
+    <div class="col-6 mt-5 mb-5" id="gameInfo">
 
         <h2 id="pageTitle"> {{game.name}}</h2>
         <br>
@@ -36,74 +36,77 @@
         <p>{{game.description_preview}}</p>
 
     </div>
-    <h2 id="pageTitle"> My friends </h2>
 
-    <div class="row" id="friendSection">
+</div>
 
-        {{#each users}}
+<h2 id="pageTitle"> People that liked {{game.name}} </h2>
 
-        <div class="col-md-3 mt-4 mb-5" id="friendInformation">
+<div class="row mb-5" id="friendSection">
 
-            <div class="card text-center" id="friendCard">
+    {{#each users}}
 
-                <div class="card-header mt-2" id="friendHeader">
+    <div class="col-md-3 mt-4 mb-5" id="friendInformation">
 
-                    <img src="{{this.profilePicture}}" class="img-fluid rounded-circle" alt="friendPicture"
-                        id="friendAvatar">
+        <div class="card text-center" id="friendCard">
 
-                </div>
+            <div class="card-header mt-2" id="friendHeader">
 
-                <div class="card-body" id="friendBody">
+                <img src="{{this.profilePicture}}" class="img-fluid rounded-circle" alt="friendPicture"
+                    id="friendAvatar">
 
-                    <p class="card-text"> <strong>{{this.username}}</strong></p>
+            </div>
 
-                    <a class="btn btn-outline-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+            <div class="card-body" id="friendBody">
 
-                    <br> <br>
+                <p class="card-text"> <strong>{{this.username}}</strong></p>
 
-                    <a class="btn btn-outline-danger" href="/community/remove-friend/{{id}}" role=" button">Remove
-                        friend</a>
+                <a class="btn btn-light" href="/community/details/{{_id}}" role="button">See profile</a>
 
-                </div>
+                <br> <br>
+
+                <a class="btn btn-danger" href="/community/remove-friend/{{id}}" role=" button">Remove
+                    friend</a>
 
             </div>
 
         </div>
 
-        {{/each}}
-
     </div>
 
-    <h2 id="pageTitle"> My events </h2>
+    {{/each}}
 
-    <div class="row" id="eventsSection">
+</div>
 
-        {{#each events}}
+<h2 id="pageTitle"> Events for playing {{game.name}} </h2>
 
-        <div class="col-md-6 mt-4 mb-5" id="eventInformation">
+<div class="row" id="eventsSection">
 
-            <div class="card text-center" id="eventCard">
+    {{#each events}}
 
-                <div class="card-body" id="eventBody">
+    <div class="col-md-6 mt-4 mb-5" id="eventInformation">
 
-                    <p class="card-text"> <strong>{{this.title}}</strong></p>
+        <div class="card text-center" id="eventCard">
 
-                    <p class="card-text"> <strong> Game: </strong>{{this.gameName}}</p>
+            <div class="card-body" id="eventBody">
 
-                    <p class="card-text"> <strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
+                <p class="card-text"> <strong>{{this.title}}</strong></p>
 
-                    <p class="card-text"> <strong>Address:</strong> {{event.address}}</p>
+                <p class="card-text"> <strong> Game: </strong>{{this.gameName}}</p>
 
-                    <a class=" btn btn-outline-dark" href="/events/details/{{id}}">Event details</a>
+                <p class="card-text"> <strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
 
-                    <a class=" btn btn-outline-danger" href="/events/withdrawEvent/{{event.id}}">Withdraw</a>
+                <p class="card-text"> <strong>Address:</strong> {{event.address}}</p>
 
-                </div>
+                <a class=" btn btn-light" href="/events/details/{{id}}">Event details</a>
+
+                <a class=" btn btn-danger" href="/events/withdrawEvent/{{event.id}}">Withdraw</a>
 
             </div>
 
         </div>
 
-        {{/each}}
-
     </div>
+
+    {{/each}}
+
+</div>

@@ -41,19 +41,19 @@
                 </ul>
 
                 {{#if isEventOwner}}
-                <a href="/events/edit/{{event.id}}" class=" btn btn-outline-warning">Edit event</a>
-                <a href="/events/delete/{{event.id}}" class=" btn btn-outline-danger">Delete event</a>
+                <a href="/events/edit/{{event.id}}" class=" btn btn-warning">Edit event</a>
+                <a href="/events/delete/{{event.id}}" class=" btn btn-danger">Delete event</a>
                 {{/if}}
 
                 <br>
 
                 {{#unless isEventOwner }}
                 {{#unless eventJoined }}
-                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-outline-success">Join event</a>
+                <a href="/events/joinEvent/{{event.id}}" class=" btn btn-success">Join event</a>
                 {{/unless}}
 
                 {{#if eventJoined}}
-                <a href="/events/withdrawEvent/{{event.id}}" class=" btn btn-outline-danger">Withdraw</a>
+                <a href="/events/withdrawEvent/{{event.id}}" class=" btn btn-danger">Withdraw</a>
                 {{/if}}
                 {{/unless}}
 

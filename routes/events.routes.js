@@ -54,29 +54,6 @@ router.post("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN
         .catch(err => next(err))
 })
 
-
-
-
-
-
-
-
-
-
-//     console.log(response.data.results[0].geometry.location))
-// .catch(err => next(err))
-
-// location: {
-//     coordenates: {
-//         type: [Number]
-//     }
-// }
-
-
-
-
-
-
 router.get('/details/:event_id', isLoggedIn, checkRoles('USER', 'ADMIN'), async (req, res, next) => {
 
     try {

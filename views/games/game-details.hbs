@@ -36,5 +36,74 @@
         <p>{{game.description_preview}}</p>
 
     </div>
+    <h2 id="pageTitle"> My friends </h2>
 
-</div>
+    <div class="row" id="friendSection">
+
+        {{#each users}}
+
+        <div class="col-md-3 mt-4 mb-5" id="friendInformation">
+
+            <div class="card text-center" id="friendCard">
+
+                <div class="card-header mt-2" id="friendHeader">
+
+                    <img src="{{this.profilePicture}}" class="img-fluid rounded-circle" alt="friendPicture"
+                        id="friendAvatar">
+
+                </div>
+
+                <div class="card-body" id="friendBody">
+
+                    <p class="card-text"> <strong>{{this.username}}</strong></p>
+
+                    <a class="btn btn-outline-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+
+                    <br> <br>
+
+                    <a class="btn btn-outline-danger" href="/community/remove-friend/{{id}}" role=" button">Remove
+                        friend</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+
+    </div>
+
+    <h2 id="pageTitle"> My events </h2>
+
+    <div class="row" id="eventsSection">
+
+        {{#each events}}
+
+        <div class="col-md-6 mt-4 mb-5" id="eventInformation">
+
+            <div class="card text-center" id="eventCard">
+
+                <div class="card-body" id="eventBody">
+
+                    <p class="card-text"> <strong>{{this.title}}</strong></p>
+
+                    <p class="card-text"> <strong> Game: </strong>{{this.gameName}}</p>
+
+                    <p class="card-text"> <strong>Date:</strong> {{this.formattedDate}} {{this.formattedTime}}</p>
+
+                    <p class="card-text"> <strong>Address:</strong> {{event.address}}</p>
+
+                    <a class=" btn btn-outline-dark" href="/events/details/{{id}}">Event details</a>
+
+                    <a class=" btn btn-outline-danger" href="/events/withdrawEvent/{{event.id}}">Withdraw</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+
+    </div>

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const gamesAPI = require('../services/games.service')
 const User = require("../models/User.model")
+const Event = require("./../models/Event.model")
 const { isLoggedIn, isLoggedOut, checkRoles } = require('../middlewares/route-guard')
 
 router.get("/categories", (req, res, next) => {
@@ -39,18 +40,39 @@ router.get("/details/:game_id", (req, res, next) => {
 
         const { _id: user_id } = req.session.currentUser
 
-        User
-            .findById(user_id)
-            .then(user => {
-                const gameAdded = user.favorites.includes(game_id)
-                return gameAdded
+        const promises = [User.findById(user_id), gamesAPI.getGameDetails(game_id), User.find({ favorites: game_id }), Event.find({ gameId: game_id })]
+
+        Promise.all(promises)
+            .then(([user, gameFromApi, userList, events]) => {
+                const viewInfo = {
+                    gameAdded: user.favorites.includes(game_id),
+                    game: gameFromApi.data.games[0],
+                    users: userList,
+                    events: events
+                }
+
+
+
+                res.render('games/game-details', viewInfo)
             })
-            .then(gameAdded => {
-                gamesAPI
-                    .getGameDetails(game_id)
-                    .then(response => res.render('games/game-details', { game: response.data.games[0], gameAdded }))
-                    .catch(err => next(err))
-            })
+
+
+
+
+
+        //     User
+        //         .findById(user_id)
+        //         .then(user => {
+        //             const gameAdded = user.favorites.includes(game_id)
+        //             return gameAdded
+        //         })
+        //         .then(gameAdded => {
+        //             gamesAPI
+        //                 .getGameDetails(game_id)
+        //                 .then(response => res.render('games/game-details', { game: response.data.games[0], gameAdded }))
+        //                 .catch(err => next(err))
+        //         })
+        // }
     }
 })
 

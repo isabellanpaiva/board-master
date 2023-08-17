@@ -18,18 +18,18 @@
 
                 <p class="card-text"> <strong>{{username}}</strong></p>
 
-                <a class="btn btn-outline-dark" href="/community/details/{{_id}}" role="button">See profile</a>
+                <a class="btn btn-light" href="/community/details/{{_id}}" role="button">See profile</a>
 
                 {{#if isFriend}}
 
-                <a class="btn btn-outline-danger" href="/community/remove-friend/{{id}}" role=" button">Remove
+                <a class="btn btn-danger" href="/community/remove-friend/{{id}}" role=" button">Remove
                     friend</a>
 
                 {{/if}}
 
                 {{#unless isFriend}}
 
-                <a class="btn btn-outline-success" href="/community/add-friend/{{id}}" role=" button">Add as friend</a>
+                <a class="btn btn-success" href="/community/add-friend/{{id}}" role=" button">Add as friend</a>
 
                 {{/unless}}
 

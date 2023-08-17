@@ -11,14 +11,14 @@
         {{#if isLogged}}
 
         {{#if gameAdded}}
-        <a href="/games/delete-game/{{game.id}}" class="btn btn-outline-danger">Remove from favorites</a>
+        <a href="/games/delete-game/{{game.id}}" class="btn btn-danger">Remove from favorites</a>
         {{/if}}
 
         {{#unless gameAdded}}
-        <a href="/games/add-game/{{game.id}}" class="btn btn-outline-success">Add to favorites</a>
+        <a href="/games/add-game/{{game.id}}" class="btn btn-success">Add to favorites</a>
         {{/unless}}
 
-        <a class="btn btn-outline-info" href="/events/create/{{game.id}}/{{game.name}}" role="button">New Event</a>
+        <a class="btn btn-success" href="/events/create/{{game.id}}/{{game.name}}" role="button">New Event</a>
 
         {{/if}}
 

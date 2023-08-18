@@ -44,7 +44,7 @@ router.post("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN
         .then(response => {
             const location = {
                 type: 'Point',
-                coordenates: [response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]
+                coordinates: [response.data.results[0].geometry.location.lng, response.data.results[0].geometry.location.lat]
             }
             return location
         })

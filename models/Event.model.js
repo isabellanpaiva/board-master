@@ -37,7 +37,7 @@ const eventSchema = new Schema(
 
             },
 
-            coordenates: {
+            coordinates: {
                 type: [Number]
             }
         },

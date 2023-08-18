@@ -9,7 +9,7 @@ class geocoding {
         })
     }
 
-    getCoordenates(address) {
+    getCoordinates(address) {
 
         return this.axiosApp.get(`/json?address=${address}&key=AIzaSyBPQd2uaw4aqmx9lrJE7pESbjI9eBxf4sY`)
     }

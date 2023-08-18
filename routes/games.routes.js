@@ -58,21 +58,6 @@ router.get("/details/:game_id", (req, res, next) => {
 
 
 
-
-
-        //     User
-        //         .findById(user_id)
-        //         .then(user => {
-        //             const gameAdded = user.favorites.includes(game_id)
-        //             return gameAdded
-        //         })
-        //         .then(gameAdded => {
-        //             gamesAPI
-        //                 .getGameDetails(game_id)
-        //                 .then(response => res.render('games/game-details', { game: response.data.games[0], gameAdded }))
-        //                 .catch(err => next(err))
-        //         })
-        // }
     }
 })
 

@@ -40,7 +40,7 @@ router.post("/create/:game_id/:game_name", isLoggedIn, checkRoles('USER', 'ADMIN
 
 
     geocodingApi
-        .getCoordenates(address)
+        .getCoordinates(address)
         .then(response => {
             const location = {
                 type: 'Point',
